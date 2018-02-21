@@ -22,6 +22,10 @@ public class TestPointClick : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+        // Debug Forward
+
+        Debug.DrawRay(transform.position, transform.forward * 25f, Color.red);
+
 		// Call the method to move the player on left mouse click
 		ClickToMove();
 		PickUpObject();
@@ -46,24 +50,30 @@ public class TestPointClick : MonoBehaviour
 				// Switch statement decides by which layer the player moves to
 				switch (hitLayer)
 				{
-					case 8:
-						Debug.Log("I Can Walk There!");
-						if (agent.stoppingDistance != .5f)
-							agent.stoppingDistance = .5f;
+                    case 8:
+                        Debug.Log("I Can Walk There!");
+                        if (agent.stoppingDistance != .5f)
+                            agent.stoppingDistance = .5f;
 
                         if (Vector3.Distance(transform.position, hit.point) < 1f)
+                        {
                             agent.SetDestination(transform.position);
+                            transform.LookAt(hit.point);
+                        }
                         else
                             agent.SetDestination(hit.point);
 						break;
                     case 9:
                         Debug.Log("I Can Go To Pick That Up!");
-                        if (agent.stoppingDistance != 1f)
-                            agent.stoppingDistance = 1f;
+                        if (agent.stoppingDistance != 1.75f)
+                            agent.stoppingDistance = 1.75f;
 
-                        if (Vector3.Distance(transform.position, hit.point) < 1.5f)
+                        if (Vector3.Distance(transform.position, hit.point) < 2f)
+                        {
                             agent.SetDestination(transform.position);
-                        else
+                            transform.LookAt(hit.point);
+                        }
+                            else
                             agent.SetDestination(hit.point);
 						break;
                     case 10:
@@ -72,8 +82,11 @@ public class TestPointClick : MonoBehaviour
                             agent.stoppingDistance = 1.5f;
 
                         if (Vector3.Distance(transform.position, hit.point) < 2f)
+                        {
                             agent.SetDestination(transform.position);
-                        else
+                            transform.LookAt(hit.point);
+                        }
+                            else
 						    agent.SetDestination(hit.point);
 						break;
 					default:
@@ -81,6 +94,8 @@ public class TestPointClick : MonoBehaviour
 						Debug.Log("I Can't Walk There!");
 						break;
 				}
+
+
 			}
 		}
 	}
@@ -89,18 +104,22 @@ public class TestPointClick : MonoBehaviour
 	{
 		// Check to see if the player clicked the left mouse button
 		if (Input.GetMouseButtonDown(0))
-		{
+		{            
 			// Cast a ray from the camera to the mouse position
 			ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
 			// Move the player to where the ray hit
 			if (Physics.Raycast(ray, out hit, 100f))
-			{
-				if (hit.collider.gameObject.layer == 9 && Vector3.Distance(transform.position, hit.transform.position) < 2f)
+			{				
+                if (hit.collider.gameObject.layer == 9 && Vector3.Distance(transform.position, hit.transform.position) < 2f)
 				{
                     hit.transform.GetComponent<Rigidbody>().isKinematic = true;
-					hit.transform.parent = transform;
-                    hit.transform.position = new Vector3(transform.forward.x, 1.5f, transform.forward.z);
+                    Vector3 heldPosition = transform.position + (transform.forward * 1.5f);                    
+                    heldPosition.y = transform.position.y + 1.5f;
+                    hit.transform.position = heldPosition;
+                    hit.transform.parent = transform;
+                    hit.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+
 					Debug.Log("You Picked Up The Object!");
 				}
 			}
@@ -129,9 +148,12 @@ public class TestPointClick : MonoBehaviour
 			{
 				if (Vector3.Distance(transform.position, dropHit.transform.position) < 3.5f)
 				{
+                    
 					// ... check if the picked up object is over the Dropable_Area
 					if (Physics.Raycast(mouseRay, out mouseHit, 100f, 1 << 10))
 					{
+                        transform.LookAt(mouseHit.point);
+
 						if (mouseHit.collider.gameObject == dropHit.collider.gameObject)
 						{
 							// ... get the picked up objects rigidbody
@@ -139,12 +161,11 @@ public class TestPointClick : MonoBehaviour
 							// ... set the isKinematic flag to false so that gravity takes effect
 							childRB.isKinematic = false;
 							// ... unparent the picked up object from the player character, and reparent to the environment holder gameobject
-							childRB.transform.parent = GameObject.FindGameObjectWithTag("Environment Handler").transform; 
+							childRB.transform.parent = GameObject.FindGameObjectWithTag("Environment Handler").transform;
 						}
 					}
 				}
 			}
-
 		}
 	}			
 }
