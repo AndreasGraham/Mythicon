@@ -51,21 +51,30 @@ public class TestPointClick : MonoBehaviour
 						if (agent.stoppingDistance != .5f)
 							agent.stoppingDistance = .5f;
 
-						agent.SetDestination(hit.point);
+                        if (Vector3.Distance(transform.position, hit.point) < 1f)
+                            agent.SetDestination(transform.position);
+                        else
+                            agent.SetDestination(hit.point);
 						break;
-					case 9:
-						Debug.Log("I Can Go To Pick That Up!");
-						if (agent.stoppingDistance != 1f)
-							agent.stoppingDistance = 1f;
+                    case 9:
+                        Debug.Log("I Can Go To Pick That Up!");
+                        if (agent.stoppingDistance != 1f)
+                            agent.stoppingDistance = 1f;
 
-						agent.SetDestination(hit.point);
+                        if (Vector3.Distance(transform.position, hit.point) < 1.5f)
+                            agent.SetDestination(transform.position);
+                        else
+                            agent.SetDestination(hit.point);
 						break;
-					case 10:
-						Debug.Log("Ok, I'll Go Drop This!");
-						if (agent.stoppingDistance != 1.5f)
-							agent.stoppingDistance = 1.5f;
+                    case 10:
+                        Debug.Log("Ok, I'll Go Drop This!");
+                        if (agent.stoppingDistance != 1.5f)
+                            agent.stoppingDistance = 1.5f;
 
-						agent.SetDestination(hit.point);
+                        if (Vector3.Distance(transform.position, hit.point) < 2f)
+                            agent.SetDestination(transform.position);
+                        else
+						    agent.SetDestination(hit.point);
 						break;
 					default:
 					// TODO: Add Audio or UI telling the player is not a navigable area
@@ -89,10 +98,9 @@ public class TestPointClick : MonoBehaviour
 			{
 				if (hit.collider.gameObject.layer == 9 && Vector3.Distance(transform.position, hit.transform.position) < 2f)
 				{
-					agent.SetDestination(transform.position);
-					hit.transform.GetComponent<Rigidbody>().isKinematic = true;
+                    hit.transform.GetComponent<Rigidbody>().isKinematic = true;
 					hit.transform.parent = transform;
-					hit.transform.position = new Vector3(hit.transform.position.x, 1.5f, hit.transform.position.z);
+                    hit.transform.position = new Vector3(transform.forward.x, 1.5f, transform.forward.z);
 					Debug.Log("You Picked Up The Object!");
 				}
 			}
