@@ -12,6 +12,9 @@ public class TestPointClick : MonoBehaviour
 	// NavMeshAgent to be able to use the NavMesh for movement
 	NavMeshAgent agent;
 
+    [SerializeField]
+    GameObject[] children;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -152,6 +155,8 @@ public class TestPointClick : MonoBehaviour
 					// ... check if the picked up object is over the Dropable_Area
 					if (Physics.Raycast(mouseRay, out mouseHit, 100f, 1 << 10))
 					{
+                        
+
                         transform.LookAt(mouseHit.point);
 
 						if (mouseHit.collider.gameObject == dropHit.collider.gameObject)
@@ -161,11 +166,11 @@ public class TestPointClick : MonoBehaviour
 							// ... set the isKinematic flag to false so that gravity takes effect
 							childRB.isKinematic = false;
 							// ... unparent the picked up object from the player character, and reparent to the environment holder gameobject
-							childRB.transform.parent = GameObject.FindGameObjectWithTag("Environment Handler").transform;
+							childRB.transform.parent = GameObject.FindGameObjectWithTag("Environment Handler").transform;                           
 						}
 					}
 				}
-			}
-		}
+			}		
+        }
 	}			
 }

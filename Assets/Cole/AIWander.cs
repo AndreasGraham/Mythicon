@@ -28,7 +28,6 @@ public class AIWander : MonoBehaviour
 
     void Wander()
     {
-     WayPoint = new Vector3(Random.Range(transform.position.x - RangeAttribute, transform.position.x + Range),
-         )   
+        //WayPoint = new Vector3(Random.Range(transform.position.x - RangeAttribute, transform.position.x + Range));
     }
 }
