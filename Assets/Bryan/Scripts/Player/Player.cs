@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
 
     PlayerAnimation animations;
     Vector3 hitPoint;
-
+    GameObject heldItem;
 	// Use this for initialization
 	void Start () 
 	{
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
 	{
         // Debug Forward
 
-        Debug.DrawRay(transform.position, transform.forward * 25f, Color.red);
+        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), transform.forward * 25f, Color.red);
 
 		// Call the method to move the player on left mouse click
 		ClickToMove();
@@ -130,11 +130,13 @@ public class Player : MonoBehaviour
 			{				
                 if (hit.collider.gameObject.layer == 9 && Vector3.Distance(transform.position, hit.transform.position) < 2f)
 				{
-                    hit.transform.GetComponent<Rigidbody>().isKinematic = true;
-                    heldPosition = transform.position + (transform.forward * 1f);                    
-                    heldPosition.y = transform.position.y + 2.25f;
-                    hit.transform.position = heldPosition;
                     hit.transform.parent = transform;
+                    hit.transform.GetComponent<Rigidbody>().isKinematic = true;
+                    heldPosition = Vector3.zero;                
+                    heldPosition = transform.position + (transform.forward * 2f);
+                    heldPosition.y += 10f;
+                    hit.transform.position = heldPosition;
+                    heldItem = hit.transform.gameObject;
                     hit.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
 
 					Debug.Log("You Picked Up The Object!");
@@ -142,9 +144,11 @@ public class Player : MonoBehaviour
 			}
 		}
 	}
-
+    Ray drawRay;
 	void DropObject()
 	{
+        drawRay = new Ray();
+
 		// Check to see if the player pressed the left mouse button
 		if (Input.GetMouseButtonDown(1))
 		{
@@ -154,8 +158,9 @@ public class Player : MonoBehaviour
 
 			// ... send a ray from the bottom of the picked up object
 			Ray newRay = new Ray();
-			newRay.origin = transform.GetChild(0).transform.position;
+            newRay.origin = heldItem.transform.position;
 			newRay.direction = Vector3.down;
+            drawRay = newRay;
 
 			// ... create a new raycast hit data point to use with the newRay
 			RaycastHit dropHit;
