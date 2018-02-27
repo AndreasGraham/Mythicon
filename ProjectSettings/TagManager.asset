@@ -13,9 +13,9 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
+  - Walkable
+  - Interactable
+  - Dropable_Area
   - 
   - 
   - 
