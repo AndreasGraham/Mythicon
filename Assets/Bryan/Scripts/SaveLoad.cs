@@ -20,8 +20,12 @@ public class SaveLoad
     [XmlIgnore]
     public InteractableObjects[] interactableObjsPosScript;
 
-    [SerializeField, XmlArray("Interactable Objects"), XmlArrayItem("Interactable")]
+    [XmlArray("Interactable Objects Held"), XmlArrayItem("Interactable")]
+    public bool[] isInteractableHeld;
+    [SerializeField, XmlArray("Interactable Objects Position"), XmlArrayItem("Interactable")]
     public Vector3[] interActableObjsPos;
+    [XmlArray("Interactable Objects Rotation"), XmlArrayItem("Interactable")]
+    public Quaternion[] interactableObjsRot;
 
     [XmlIgnore]
     public GameObject[] enviroObjs;

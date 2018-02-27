@@ -17,15 +17,24 @@ public class SaveLoadWrapper :  MonoBehaviour
     public void Save(string playerSaveName)
     {
         int i = 0;
-                  
-        saveLoad1.interActableObjsPos = new Vector3[saveLoad1.interactableObjs.Length];
-        saveLoad1.interactableObjsPosScript = new InteractableObjects[saveLoad1.interactableObjs.Length];
+        
+        if(saveLoad1.interActableObjsPos.Length == 0)
+            saveLoad1.interActableObjsPos = new Vector3[saveLoad1.interactableObjs.Length];
+        if(saveLoad1.interactableObjsRot.Length == 0)
+            saveLoad1.interactableObjsRot = new Quaternion[saveLoad1.interactableObjs.Length];
+        if(saveLoad1.interactableObjsPosScript.Length == 0)
+            saveLoad1.interactableObjsPosScript = new InteractableObjects[saveLoad1.interactableObjs.Length];
+        if(saveLoad1.isInteractableHeld.Length == 0)
+            saveLoad1.isInteractableHeld = new bool[saveLoad1.interactableObjs.Length];
+
         foreach (GameObject objs in saveLoad1.interactableObjs)
         {
             for (; i < saveLoad1.interactableObjs.Length; i++)
             {
                 saveLoad1.interactableObjsPosScript[i] = saveLoad1.interactableObjs[i].GetComponent<InteractableObjects>();
                 saveLoad1.interActableObjsPos[i] = saveLoad1.interactableObjsPosScript[i].objectPos;
+                saveLoad1.interactableObjsRot[i] = saveLoad1.interactableObjsPosScript[i].objectRot;
+                saveLoad1.isInteractableHeld[i] = saveLoad1.interactableObjsPosScript[i].isBeingHeld;
                 break;
             }
 
@@ -45,6 +54,12 @@ public class SaveLoadWrapper :  MonoBehaviour
         GameObject[] interactableObjs = GameObject.FindGameObjectsWithTag("Interactable");
         GameObject[] enviroObjs = GameObject.FindGameObjectsWithTag("Dropable_Area");
 
+        InteractableObjects[] interactableScripts = new InteractableObjects[interactableObjs.Length];
+        for(int k = 0; k < interactableObjs.Length; k++)
+        {
+            interactableScripts[k] = interactableObjs[k].GetComponent<InteractableObjects>();
+        }
+
         player.transform.position = saveLoad1.playerPos;
         player.GetComponent<NavMeshAgent>().SetDestination(player.transform.position);
 
@@ -54,6 +69,18 @@ public class SaveLoadWrapper :  MonoBehaviour
             for (; i < interactableObjs.Length; i++)
             {
                 interactableObjs[i].transform.position = saveLoad1.interActableObjsPos[i];
+                interactableObjs[i].transform.rotation = saveLoad1.interactableObjsRot[i];
+                interactableScripts[i].isBeingHeld = saveLoad1.isInteractableHeld[i];
+
+                if (interactableScripts[i].isBeingHeld)
+                {
+                    interactableObjs[i].GetComponent<Rigidbody>().isKinematic = true;
+                    interactableObjs[i].transform.parent = player.transform;
+
+                }
+                else
+                    interactableObjs[i].transform.parent = GameObject.FindGameObjectWithTag("Environment Handler").transform;
+
                 break;
             }
 
