@@ -9,10 +9,23 @@ public class PlayerSaveLoad : MonoBehaviour
 {
     [SerializeField, XmlAttribute("player position")]
     public Vector3 playerPos;
+
+    [XmlAttribute("Player Rotation")]
+    public Quaternion playerRot;
+
+    [XmlAttribute("Player Layer")]
+    public int layer;
+
+    void Start()
+    {
+        layer = gameObject.layer;
+    }
 	
 	// Update is called once per frame
 	void Update () 
     {
         playerPos = transform.position;
+        playerRot = transform.rotation;
+
 	}
 }

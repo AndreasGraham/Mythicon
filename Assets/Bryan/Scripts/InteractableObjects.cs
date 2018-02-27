@@ -4,13 +4,16 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.IO;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InteractableObjects : MonoBehaviour 
 {
     [XmlAttribute("Interactable Object Position")]
     public Vector3 objectPos;
-    [XmlAttribute("interactable Object Rotation")]
+    [XmlAttribute("Interactable Object Rotation")]
     public Quaternion objectRot;
+    [XmlAttribute("Interactable Object Layer")]
+    public int layerIndex;
 
     [XmlAttribute("Interactable Object Parent")]
     public bool isBeingHeld = false;
@@ -26,6 +29,7 @@ public class InteractableObjects : MonoBehaviour
     {
         objectPos = transform.position;
         objectRot = transform.rotation;
+        layerIndex = gameObject.layer;
 
         if (transform.parent == player)
             isBeingHeld = true;
@@ -33,3 +37,6 @@ public class InteractableObjects : MonoBehaviour
             isBeingHeld = false;
     }
 }
+
+
+
