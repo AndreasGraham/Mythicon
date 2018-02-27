@@ -1,16 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Xml;
+using System.Xml.Serialization;
+using System.IO;
 using UnityEngine;
 
-public class InteractableObjects : MonoBehaviour {
+public class InteractableObjects : MonoBehaviour 
+{
+    [XmlAttribute("Interactable")]
+    public Vector3 objectPos;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    void Update()
+    {
+        objectPos = transform.position;
+    }
 }

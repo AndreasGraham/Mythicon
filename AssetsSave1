@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<SaveLoadManager xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Player>
+    <x>-3.92729068</x>
+    <y>1.08333337</y>
+    <z>3</z>
+  </Player>
+  <Interactable_x0020_Objects>
+    <Interactable>
+      <x>-2.25408053</x>
+      <y>1.49984813</y>
+      <z>-2.77704883</z>
+    </Interactable>
+    <Interactable>
+      <x>-4.068012</x>
+      <y>1.49982429</y>
+      <z>4.44373</z>
+    </Interactable>
+    <Interactable>
+      <x>3.54</x>
+      <y>0.5</y>
+      <z>-2.73875962E-08</z>
+    </Interactable>
+  </Interactable_x0020_Objects>
+</SaveLoadManager>
