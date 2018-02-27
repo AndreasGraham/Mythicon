@@ -12,8 +12,10 @@ public class SaveLoad
     [XmlIgnore]
     public PlayerSaveLoad playerPosScript;
 
-    [SerializeField, XmlElement("Player")]
+    [XmlElement("Player Position")]
     public Vector3 playerPos;
+    [XmlElement("Player Rotation")]
+    public Quaternion playerRot;
 
     [XmlIgnore]
     public GameObject[] interactableObjs;
@@ -22,7 +24,7 @@ public class SaveLoad
 
     [XmlArray("Interactable Objects Held"), XmlArrayItem("Interactable")]
     public bool[] isInteractableHeld;
-    [SerializeField, XmlArray("Interactable Objects Position"), XmlArrayItem("Interactable")]
+    [XmlArray("Interactable Objects Position"), XmlArrayItem("Interactable")]
     public Vector3[] interActableObjsPos;
     [XmlArray("Interactable Objects Rotation"), XmlArrayItem("Interactable")]
     public Quaternion[] interactableObjsRot;
@@ -30,7 +32,7 @@ public class SaveLoad
     [XmlIgnore]
     public GameObject[] enviroObjs;
 
-    [SerializeField, XmlArray("Environment Objects"), XmlArrayItem("Dropable_Area")]
+    [XmlArray("Environment Objects"), XmlArrayItem("Dropable_Area")]
     public Vector3[] enviroObjsPos;
 
     public void Save(string playerSaveName)

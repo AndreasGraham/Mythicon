@@ -11,21 +11,18 @@ public class SaveLoadWrapper :  MonoBehaviour
     {
         saveLoad1.playerPosScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerSaveLoad>();
         saveLoad1.playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+        saveLoad1.playerRot = GameObject.FindGameObjectWithTag("Player").transform.rotation; 
         saveLoad1.interactableObjs = GameObject.FindGameObjectsWithTag("Interactable");
     }
 
     public void Save(string playerSaveName)
     {
         int i = 0;
-        
-        if(saveLoad1.interActableObjsPos.Length == 0)
-            saveLoad1.interActableObjsPos = new Vector3[saveLoad1.interactableObjs.Length];
-        if(saveLoad1.interactableObjsRot.Length == 0)
-            saveLoad1.interactableObjsRot = new Quaternion[saveLoad1.interactableObjs.Length];
-        if(saveLoad1.interactableObjsPosScript.Length == 0)
-            saveLoad1.interactableObjsPosScript = new InteractableObjects[saveLoad1.interactableObjs.Length];
-        if(saveLoad1.isInteractableHeld.Length == 0)
-            saveLoad1.isInteractableHeld = new bool[saveLoad1.interactableObjs.Length];
+
+        saveLoad1.interActableObjsPos = new Vector3[saveLoad1.interactableObjs.Length];
+        saveLoad1.interactableObjsRot = new Quaternion[saveLoad1.interactableObjs.Length];
+        saveLoad1.interactableObjsPosScript = new InteractableObjects[saveLoad1.interactableObjs.Length];
+        saveLoad1.isInteractableHeld = new bool[saveLoad1.interactableObjs.Length];
 
         foreach (GameObject objs in saveLoad1.interactableObjs)
         {
@@ -43,6 +40,7 @@ public class SaveLoadWrapper :  MonoBehaviour
 
         saveLoad1.enviroObjs = GameObject.FindGameObjectsWithTag("Dropable_Area");
         saveLoad1.playerPos = saveLoad1.playerPosScript.playerPos;
+        saveLoad1.playerRot = saveLoad1.playerPosScript.playerRot;
         saveLoad1.Save(playerSaveName);
     }
 
@@ -61,6 +59,7 @@ public class SaveLoadWrapper :  MonoBehaviour
         }
 
         player.transform.position = saveLoad1.playerPos;
+        player.transform.rotation = saveLoad1.playerRot;
         player.GetComponent<NavMeshAgent>().SetDestination(player.transform.position);
 
         int i = 0;
