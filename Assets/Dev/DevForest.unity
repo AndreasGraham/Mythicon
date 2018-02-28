@@ -107,7 +107,7 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-  m_NavMeshData: {fileID: 23800000, guid: e028765ab37f15b4391d41c5e61f3edb, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 31fec6ea8bf90154db03b0ae3312a23f, type: 2}
 --- !u!1001 &72987403
 Prefab:
   m_ObjectHideFlags: 0
@@ -640,15 +640,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 577090914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2d558527beb5cb41a4ef98970094660, type: 3}
+  m_Script: {fileID: 11500000, guid: 3db6e43ac89963c4c96be5f15ea85dd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walk: {fileID: 2800000, guid: 77c5b76517bd8eb4082e5b56dc46a81a, type: 3}
-  interact: {fileID: 2800000, guid: fd8e6657cdd039c45adf6d663dd7a21b, type: 3}
-  notInteractable: {fileID: 2800000, guid: 6bcaec99636300441959db666315adbb, type: 3}
-  dropable: {fileID: 2800000, guid: dcf7847f499c94f4d8509e4fb389d8b8, type: 3}
-  debugObj: {fileID: 0}
-  layerIndex: 0
+  walkable: {fileID: 2800000, guid: fe9465c17ff0b14418936f10e43199c3, type: 3}
+  interactive: {fileID: 2800000, guid: ac1b8a504a4ba5f4b914daed04a9233e, type: 3}
+  NonInteractive: {fileID: 2800000, guid: e9873078d28c3fd4ea1a6e0592cdba8a, type: 3}
+  dropable: {fileID: 2800000, guid: fb6e7821e2f7f7b429b6367898da73cc, type: 3}
 --- !u!4 &578414561 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 780611a67e8e941a2b3aa96e5915a793, type: 2}
@@ -826,6 +824,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectPos: {x: 0, y: 0, z: 0}
   objectRot: {x: 0, y: 0, z: 0, w: 0}
+  layerIndex: 0
   isBeingHeld: 0
 --- !u!23 &725504973
 MeshRenderer:
@@ -1127,6 +1126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPos: {x: 0, y: 0, z: 0}
+  playerRot: {x: 0, y: 0, z: 0, w: 0}
+  layer: 0
 --- !u!114 &874238175
 MonoBehaviour:
   m_ObjectHideFlags: 0
