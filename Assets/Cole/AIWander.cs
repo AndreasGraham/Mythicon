@@ -35,6 +35,7 @@ public class AIWander : MonoBehaviour
 
     public static Vector3 RandomNavMesh(Vector3 origin, float dist, int layermask)
     {
+
         Vector3 randDirection = Random.insideUnitSphere * dist;
 
         randDirection += origin;
@@ -44,7 +45,8 @@ public class AIWander : MonoBehaviour
         NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
 
         return navHit.position;
-        //WayPoint = new Vector3(Random.Range(transform.position.x - RangeAttribute, transform.position.x + Range));
+
+        
     }
     
 }
