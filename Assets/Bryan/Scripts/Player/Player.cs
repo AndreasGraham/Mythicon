@@ -130,14 +130,16 @@ public class Player : MonoBehaviour
 			{				
                 if (hit.collider.gameObject.layer == 9 && Vector3.Distance(transform.position, hit.transform.position) < 2f)
 				{
+                    
                     hit.transform.parent = transform;
+                    hit.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
                     hit.transform.GetComponent<Rigidbody>().isKinematic = true;
                     heldPosition = Vector3.zero;                
-                    heldPosition = transform.position + (transform.forward * 2f);
-                    heldPosition.y += 10f;
+                    heldPosition = transform.position + (transform.forward * .25f);
+                    heldPosition.y += transform.lossyScale.y * 1.5f;
                     hit.transform.position = heldPosition;
                     heldItem = hit.transform.gameObject;
-                    hit.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
+
 
 					Debug.Log("You Picked Up The Object!");
 				}
@@ -185,7 +187,7 @@ public class Player : MonoBehaviour
 							// ... set the isKinematic flag to false so that gravity takes effect
 							childRB.isKinematic = false;
 							// ... unparent the picked up object from the player character, and reparent to the environment holder gameobject
-							childRB.transform.parent = GameObject.FindGameObjectWithTag("Environment Handler").transform;                           
+							childRB.transform.parent = GameObject.FindGameObjectWithTag("Environment Handler").transform;
 						}
 					}
 				}
