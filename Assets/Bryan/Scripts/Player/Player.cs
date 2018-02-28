@@ -17,7 +17,8 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     Vector3 heldPosition;
-
+    [SerializeField]
+    Transform heldParent;
     PlayerAnimation animations;
     Vector3 hitPoint;
     GameObject heldItem;
@@ -89,8 +90,11 @@ public class Player : MonoBehaviour
                             agent.SetDestination(transform.position);
                             transform.LookAt(hit.point);
                         }
-                            else
+                        else
+                        {
                             agent.SetDestination(hit.point);
+                            animations.SetWalkSpeed(1f);
+                        }
 						break;
                     case 10:
                         Debug.Log("Ok, I'll Go Drop This!");
@@ -102,8 +106,11 @@ public class Player : MonoBehaviour
                             agent.SetDestination(transform.position);
                             transform.LookAt(hit.point);
                         }
-                            else
-						    agent.SetDestination(hit.point);
+                        else
+                        {
+                            agent.SetDestination(hit.point);
+                            animations.SetWalkSpeed(1f);
+                        }
 						break;
 					default:
 					// TODO: Add Audio or UI telling the player is not a navigable area
@@ -135,11 +142,11 @@ public class Player : MonoBehaviour
                     hit.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
                     hit.transform.GetComponent<Rigidbody>().isKinematic = true;
                     heldPosition = Vector3.zero;                
-                    heldPosition = transform.position + (transform.forward * .25f);
-                    heldPosition.y += transform.lossyScale.y * 1.5f;
+                    heldPosition = transform.position + (transform.forward * .05f);
+                    heldPosition.y += transform.lossyScale.y * 1.25f;
                     hit.transform.position = heldPosition;
                     heldItem = hit.transform.gameObject;
-
+                    heldParent = hit.transform.parent;
 
 					Debug.Log("You Picked Up The Object!");
 				}
@@ -163,7 +170,7 @@ public class Player : MonoBehaviour
             newRay.origin = heldItem.transform.position;
 			newRay.direction = Vector3.down;
             drawRay = newRay;
-
+            Debug.DrawRay(drawRay.origin, drawRay.direction, Color.blue);
 			// ... create a new raycast hit data point to use with the newRay
 			RaycastHit dropHit;
 
@@ -176,8 +183,6 @@ public class Player : MonoBehaviour
 					// ... check if the picked up object is over the Dropable_Area
 					if (Physics.Raycast(mouseRay, out mouseHit, 100f, 1 << 10))
 					{
-                        
-
                         transform.LookAt(mouseHit.point);
 
 						if (mouseHit.collider.gameObject == dropHit.collider.gameObject)
@@ -188,6 +193,7 @@ public class Player : MonoBehaviour
 							childRB.isKinematic = false;
 							// ... unparent the picked up object from the player character, and reparent to the environment holder gameobject
 							childRB.transform.parent = GameObject.FindGameObjectWithTag("Environment Handler").transform;
+                            heldParent = childRB.transform.parent;
 						}
 					}
 				}
