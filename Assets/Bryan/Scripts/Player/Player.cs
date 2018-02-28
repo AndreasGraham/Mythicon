@@ -65,9 +65,8 @@ public class Player : MonoBehaviour
 				switch (hitLayer)
 				{
                     case 8:
-                        Debug.Log("I Can Walk There!");
-                        if (agent.stoppingDistance != .5f)
-                            agent.stoppingDistance = .5f;
+                        if (agent.stoppingDistance != 1.5f)
+                            agent.stoppingDistance = 1.5f;
 
                         if (Vector3.Distance(transform.position, hit.point) < 1f)
                         {
@@ -81,7 +80,6 @@ public class Player : MonoBehaviour
                         }
                         break;
                     case 9:
-                        Debug.Log("I Can Go To Pick That Up!");
                         if (agent.stoppingDistance != 1.75f)
                             agent.stoppingDistance = 1.75f;
 
@@ -97,7 +95,6 @@ public class Player : MonoBehaviour
                         }
 						break;
                     case 10:
-                        Debug.Log("Ok, I'll Go Drop This!");
                         if (agent.stoppingDistance != 1.5f)
                             agent.stoppingDistance = 1.5f;
 
@@ -142,34 +139,35 @@ public class Player : MonoBehaviour
                     hit.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
                     hit.transform.GetComponent<Rigidbody>().isKinematic = true;
                     heldPosition = Vector3.zero;                
-                    heldPosition = transform.position + (transform.forward * .05f);
-                    heldPosition.y += transform.lossyScale.y * 1.25f;
+                    heldPosition = transform.position + (transform.forward * .03f);
+                    heldPosition.y += transform.lossyScale.y * 1.05f;
                     hit.transform.position = heldPosition;
                     heldItem = hit.transform.gameObject;
                     heldParent = hit.transform.parent;
-
-					Debug.Log("You Picked Up The Object!");
+                    
+                    animations.SetIsCarrying(true);
+                    Debug.Log("You Picked Up The Object!");
 				}
 			}
 		}
 	}
-
+    
 	void DropObject()
 	{
-		// Check to see if the player pressed the left mouse button
+        // Check to see if the player pressed the left mouse button
 		if (Input.GetMouseButtonDown(1))
 		{
-            GameObject[] child = GameObject.FindGameObjectsWithTag("Interactable");
-
-            foreach (GameObject children in child)
+            animations.SetIsCarrying(false);
+            GameObject[] children = GameObject.FindGameObjectsWithTag("Interactable");
+            
+            foreach(GameObject child in children)
             {
-                if (children.transform.parent == gameObject.transform)
+                if(child.transform.parent == gameObject.transform)
                 {
-                    children.GetComponent<Rigidbody>().isKinematic = false;
-                    children.transform.parent = GameObject.FindGameObjectWithTag("Environment Handler").transform;
+                    child.GetComponent<Rigidbody>().isKinematic = false;
+                    child.transform.parent = GameObject.FindGameObjectWithTag("Environment Handler").transform;
                 }
             }
-
         }
 	}			
 }
