@@ -132,7 +132,7 @@ public class Player : MonoBehaviour
 			// Move the player to where the ray hit
 			if (Physics.Raycast(ray, out hit, 100f))
 			{				
-                if (hit.collider.gameObject.layer == 9 && Vector3.Distance(transform.position, hit.transform.position) < 1f)
+                if (hit.collider.gameObject.layer == 9 && Vector3.Distance(transform.position, hit.transform.position) < 2f)
 				{
                     
                     hit.transform.parent = transform;
