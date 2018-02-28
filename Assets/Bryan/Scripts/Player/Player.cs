@@ -153,51 +153,23 @@ public class Player : MonoBehaviour
 			}
 		}
 	}
-    Ray drawRay;
+
 	void DropObject()
 	{
-        drawRay = new Ray();
-
 		// Check to see if the player pressed the left mouse button
 		if (Input.GetMouseButtonDown(1))
 		{
-			// Send a ray from the camera from the mouse position
-			Ray mouseRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-			RaycastHit mouseHit;
+            GameObject[] child = GameObject.FindGameObjectsWithTag("Interactable");
 
-			// ... send a ray from the bottom of the picked up object
-			Ray newRay = new Ray();
-            newRay.origin = heldItem.transform.position;
-			newRay.direction = Vector3.down;
-            drawRay = newRay;
-            Debug.DrawRay(drawRay.origin, drawRay.direction, Color.blue);
-			// ... create a new raycast hit data point to use with the newRay
-			RaycastHit dropHit;
+            foreach (GameObject children in child)
+            {
+                if (children.transform.parent == gameObject.transform)
+                {
+                    children.GetComponent<Rigidbody>().isKinematic = false;
+                    children.transform.parent = GameObject.FindGameObjectWithTag("Environment Handler").transform;
+                }
+            }
 
-			// ... get new ray data and the hit point data only on the Dropable_Area layer
-			if (Physics.Raycast(newRay, out dropHit, 100f, 1 << 10))
-			{
-				if (Vector3.Distance(transform.position, dropHit.transform.position) < 3.5f)
-				{
-                    
-					// ... check if the picked up object is over the Dropable_Area
-					if (Physics.Raycast(mouseRay, out mouseHit, 100f, 1 << 10))
-					{
-                        transform.LookAt(mouseHit.point);
-
-						if (mouseHit.collider.gameObject == dropHit.collider.gameObject)
-						{
-							// ... get the picked up objects rigidbody
-							var childRB = transform.GetComponentInChildren<Rigidbody>();
-							// ... set the isKinematic flag to false so that gravity takes effect
-							childRB.isKinematic = false;
-							// ... unparent the picked up object from the player character, and reparent to the environment holder gameobject
-							childRB.transform.parent = GameObject.FindGameObjectWithTag("Environment Handler").transform;
-                            heldParent = childRB.transform.parent;
-						}
-					}
-				}
-			}		
         }
 	}			
 }
