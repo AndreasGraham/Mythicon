@@ -896,6 +896,7 @@ GameObject:
   - component: {fileID: 114248372483296080}
   - component: {fileID: 114116095392606776}
   - component: {fileID: 114829104614898914}
+  - component: {fileID: 64881741073112354}
   m_Layer: 0
   m_Name: paladin_j_nordstrom (1)
   m_TagString: Player
@@ -1319,7 +1320,7 @@ Transform:
   m_GameObject: {fileID: 1904385790888446}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -10.45, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4627145223417476}
   - {fileID: 4202589733552024}
@@ -1989,6 +1990,20 @@ Transform:
   m_Father: {fileID: 4189896827079470}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!64 &64881741073112354
+MeshCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1904385790888446}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 0}
 --- !u!95 &95268881094708700
 Animator:
   serializedVersion: 3
@@ -2033,6 +2048,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   children: []
   heldPosition: {x: 0, y: 0, z: 0}
+  heldParent: {fileID: 0}
 --- !u!114 &114829104614898914
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -6,14 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Dev/DevForest.unity
-    guid: c228f6ac479aedb47858b32ca42e302d
-  - enabled: 1
     path: Assets/Dev/DevMainMenu.unity
     guid: c7c4f55255a548343982eff9aada9b4e
-  - enabled: 0
-    path: Assets/Kimberly/[K]Scenes/MainMenu.unity
-    guid: e437723c3e90dfa41be4727c87e9760e
-  - enabled: 0
-    path: Assets/Kimberly/[K]Scenes/Testing.unity
-    guid: a1b85bf5ff7c9d64da59172714dc4fdd
+  - enabled: 1
+    path: Assets/Dev/DevForest.unity
+    guid: c228f6ac479aedb47858b32ca42e302d
