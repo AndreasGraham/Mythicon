@@ -25,8 +25,6 @@ public class Controller : MonoBehaviour
     void Awake()
     {
         inGameMenu.SetActive(false);
-        pickFlowerPanel.SetActive(false);
-        flowerNumberPanel.SetActive(false);
 
         flowers = gameObject.GetComponent<ItemCounter>();
     }
@@ -50,21 +48,16 @@ public class Controller : MonoBehaviour
         }
 
     //==================================================
-        if (Input.GetKey(KeyCode.Space))
-        {
-            pickFlowerPanel.SetActive(true);
-            flowerNumberPanel.SetActive(true);
-        }
 
-        if(pickFlowerPanel.activeInHierarchy == true)
-        {
-            pickText.text = "Pick Flowers";
-            counterText.text = "Flowers: " + flowers.GetItem() + "/" + flowers.GetCollectedLimit(); 
-        }
         if(flowers.GetItem() >= flowers.GetCollectedLimit())
         {
             pickText.text = "Go to the Village";
-            counterText.text = "Flowers: Completed " + flowers.GetItem() + "/" + flowers.GetCollectedLimit();
+            counterText.text = "Flowers: Completed";
+        }
+        else
+        {
+            pickText.text = "Pick Flowers";
+            counterText.text = "Flowers: " + flowers.GetItem() + "/" + flowers.GetCollectedLimit();
         }
     }
 
