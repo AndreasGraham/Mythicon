@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 
-public class SaveLoadWrapper :  MonoBehaviour
+public class DevSaveLoadWrapper :  MonoBehaviour
 {
-    SaveLoad saveLoad1 = new SaveLoad();
+    DevSaveLoad saveLoad1 = new DevSaveLoad();
 
     public void Save()
     {
@@ -48,7 +48,7 @@ public class SaveLoadWrapper :  MonoBehaviour
 
     public void Load()
     {
-        saveLoad1 = SaveLoad.Load("Save1");
+        saveLoad1 = DevSaveLoad.Load("Save1");
         saveLoad1.shouldLoad = true;
         saveLoad1.Save("Save1");
         SceneManager.LoadScene(saveLoad1.sceneIndex);
