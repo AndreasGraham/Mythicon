@@ -133,7 +133,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 8
   m_Type: 1
-  m_Color: {r: 1, g: 0.8030588, b: 0.4705882, a: 1}
+  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -180,13 +180,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 96407188}
-  m_LocalRotation: {x: 0.35263553, y: 0.050570842, z: 0.23998888, w: 0.9030483}
-  m_LocalPosition: {x: 0, y: 10.100006, z: 0}
+  m_LocalRotation: {x: 0.09353868, y: 0.380619, z: 0.055367433, w: 0.9183214}
+  m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 37.779003, y: 19.251001, z: 36.408}
+  m_LocalEulerAnglesHint: {x: 7.4490004, y: 45.681004, z: 10.042001}
 --- !u!1 &224047587
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.647, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.05528876, g: 0.4044118, b: 0.008920857, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -527,10 +527,10 @@ Terrain:
   m_DrawHeightmap: 1
   m_DrawTreesAndFoliage: 1
   m_ReflectionProbeUsage: 1
-  m_MaterialType: 2
+  m_MaterialType: 1
   m_LegacySpecular:
     serializedVersion: 2
-    rgba: 4279005646
+    rgba: 4286545791
   m_LegacyShininess: 0.078125
   m_MaterialTemplate: {fileID: 0}
   m_BakeLightProbesForTrees: 1
@@ -592,7 +592,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 962196966}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.100006, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -985,7 +985,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.64705884, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.05528876, g: 0.4044118, b: 0.008920857, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1191,7 +1191,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.647, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.05528876, g: 0.4044118, b: 0.008920857, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1269,7 +1269,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.647, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.05528876, g: 0.4044118, b: 0.008920857, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
