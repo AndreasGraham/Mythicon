@@ -6,13 +6,18 @@ using UnityEngine.SceneManagement;
 
 public class Controller : MonoBehaviour
 {
-    public GameObject inGameMenu;
-    public GameObject pickFlowerPanel;
-    public GameObject flowerNumberPanel;
+    [SerializeField]
+    private GameObject inGameMenu;
+    [SerializeField]
+    private GameObject pickFlowerPanel;
+    [SerializeField]
+    private GameObject flowerNumberPanel;
     //==================================================
 
-    public Text pickText;
-    public Text counterText;
+    [SerializeField]
+    private Text pickText;
+    [SerializeField]
+    private Text counterText;
     //==================================================
 
     ItemCounter flowers;
@@ -54,7 +59,12 @@ public class Controller : MonoBehaviour
         if(pickFlowerPanel.activeInHierarchy == true)
         {
             pickText.text = "Pick Flowers";
-            counterText.text = "Flowers: " + flowers.item;
+            counterText.text = "Flowers: " + flowers.GetItem() + "/" + flowers.GetCollectedLimit(); 
+        }
+        if(flowers.GetItem() >= flowers.GetCollectedLimit())
+        {
+            pickText.text = "Go to the Village";
+            counterText.text = "Flowers: Completed " + flowers.GetItem() + "/" + flowers.GetCollectedLimit();
         }
     }
 

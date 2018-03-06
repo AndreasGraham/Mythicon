@@ -4,26 +4,28 @@ using UnityEngine;
 
 public class ItemCounter : MonoBehaviour
 {
+  
+    private int item = 0;
+
     [SerializeField]
-    public int item;
+    private int collectLimit;
 
-    public int collectLimit;
-    // Use this for initialization
-    void Start()
+    public void SetItem(int newItem)
     {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            item++;
-        }
-        if(item >= collectLimit)
+        item += newItem;
+        if (item >= collectLimit)
         {
             item = collectLimit;
         }
+    }
+
+    public int GetItem()
+    {
+        return item;
+    }
+
+    public int GetCollectedLimit()
+    {
+        return collectLimit;
     }
 }
