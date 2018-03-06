@@ -12,6 +12,8 @@ public class InteractableObjects : MonoBehaviour
     public Vector3 objectPos;
     [XmlAttribute("Interactable Object Rotation")]
     public Quaternion objectRot;
+    [XmlAttribute("Interactable Object Scale")]
+    public Vector3 objectScale;
     [XmlAttribute("Interactable Object Layer")]
     public int layerIndex;
 
@@ -29,6 +31,7 @@ public class InteractableObjects : MonoBehaviour
     {
         objectPos = transform.position;
         objectRot = transform.rotation;
+        objectScale = transform.lossyScale;
         layerIndex = gameObject.layer;
 
         if (transform.parent == player)

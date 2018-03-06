@@ -22,6 +22,10 @@ public class Player : MonoBehaviour
     PlayerAnimation animations;
     Vector3 hitPoint;
     GameObject heldItem;
+
+    [SerializeField]
+    private bool isInteractive;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -29,6 +33,8 @@ public class Player : MonoBehaviour
 		agent = GetComponent<NavMeshAgent>();
 
         animations = GetComponent<PlayerAnimation>();
+
+        isInteractive = false;
 	}
 	
 	// Update is called once per frame
@@ -45,6 +51,28 @@ public class Player : MonoBehaviour
 		PickUpObject();
 		DropObject();
 	}
+
+    // Check to see if the player is in an interactable area
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "InteractableArea")
+        {
+            isInteractive = true;
+        }
+    }
+
+    // Check to see if the player has left an interactable area
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "InteractableArea")
+            isInteractive = false;
+    }
+
+    // Return if the player is in an interactable area or not
+    public bool GetInInteractiveArea()
+    {
+        return isInteractive;
+    }
 
 	// Method to move the player
 	Vector3 ClickToMove()

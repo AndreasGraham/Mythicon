@@ -7,10 +7,12 @@ using UnityEngine.SceneManagement;
 public class Controller : MonoBehaviour
 {
     public GameObject inGameMenu;
+    bool ingame;
     // Use this for initialization
     void Awake()
     {
         inGameMenu.SetActive(false);
+        ingame = true;
     }
 
     // Update is called once per frame
@@ -18,16 +20,19 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (inGameMenu.activeSelf)
+            switch (ingame)
             {
-                inGameMenu.SetActive(false);
-                Time.timeScale = 1;
+                case true:
+                    inGameMenu.SetActive(true);
+                    Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+                    Time.timeScale = 0;
+                    break;
+                case false:
+                    inGameMenu.SetActive(false);
+                    Time.timeScale = 1;
+                    break;
             }
-            else
-            {
-                inGameMenu.SetActive(true);
-                Time.timeScale = 0;
-            }
+            ingame = !ingame;
         }
         
     }
@@ -35,12 +40,6 @@ public class Controller : MonoBehaviour
     public void MainMenu()
     {
         SceneManager.LoadScene(0);
-    }
-
-    public void ReturnToGame()
-    {
-        inGameMenu.SetActive(false);
-        Time.timeScale = 1;
     }
 
     public void QuitGame()
