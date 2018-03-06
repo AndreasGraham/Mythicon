@@ -162,14 +162,15 @@ public class Player : MonoBehaviour
 			{				
                 if (hit.collider.gameObject.layer == 9 && Vector3.Distance(transform.position, hit.transform.position) < 2f)
 				{
-                    
+                    Debug.Log(transform.forward);
+                    heldPosition = Vector3.zero;                
+                    //heldPosition = new Vector3(.5f, 0f, .5f);
                     hit.transform.parent = transform;
                     hit.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
                     hit.transform.GetComponent<Rigidbody>().isKinematic = true;
-                    heldPosition = Vector3.zero;                
-                    heldPosition = transform.position + (transform.forward * .03f);
-                    heldPosition.y += transform.lossyScale.y * 1.05f;
-                    hit.transform.position = heldPosition;
+
+                    heldPosition.y = (transform.lossyScale.y / 2f);
+                    hit.transform.localPosition = heldPosition;
                     heldItem = hit.transform.gameObject;
                     heldParent = hit.transform.parent;
                     
