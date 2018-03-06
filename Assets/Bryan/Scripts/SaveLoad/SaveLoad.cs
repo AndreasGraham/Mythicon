@@ -6,6 +6,7 @@ using System.Xml.Serialization;
 using System.IO;
 using UnityEngine;
 
+
 [XmlRoot("SaveLoadManager")]
 public class SaveLoad
 {
@@ -16,6 +17,11 @@ public class SaveLoad
     public Vector3 playerPos;
     [XmlElement("Player Rotation")]
     public Quaternion playerRot;
+
+    [XmlElement("Camera Position")]
+    public Vector3 cameraPos;
+    [XmlElement("Camera Rotation")]
+    public Quaternion cameraRot;
 
     [XmlIgnore]
     public GameObject[] interactableObjs;
@@ -32,8 +38,16 @@ public class SaveLoad
     [XmlIgnore]
     public GameObject[] enviroObjs;
 
-    [XmlArray("Environment Objects"), XmlArrayItem("Dropable_Area")]
+    [XmlArray("Environment Objects Position"), XmlArrayItem("Dropable_Area")]
     public Vector3[] enviroObjsPos;
+    [XmlArray("Environment Objects Rotation"), XmlArrayItem("Droppable_Area")]
+    public Quaternion[] enviroObjsRot;
+
+    [XmlElement("Current Scene")]
+    public int sceneIndex;
+
+    [XmlElement("Should The Scene Load")]
+    public bool shouldLoad;
 
     public void Save(string playerSaveName)
     {

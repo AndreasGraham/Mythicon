@@ -1,76 +1,77 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <SaveLoadManager xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Player_x0020_Position>
-    <x>-11.8436241</x>
-    <y>1.08333337</y>
-    <z>-0.125749514</z>
+    <x>210.909378</x>
+    <y>0.4825894</y>
+    <z>384.604</z>
   </Player_x0020_Position>
   <Player_x0020_Rotation>
     <x>0</x>
-    <y>0.8931183</y>
+    <y>0.8777894</y>
     <z>0</z>
-    <w>-0.449821919</w>
+    <w>-0.479046881</w>
     <eulerAngles>
       <x>0</x>
-      <y>233.464508</y>
+      <y>237.246338</y>
       <z>0</z>
     </eulerAngles>
   </Player_x0020_Rotation>
+  <Camera_x0020_Position>
+    <x>208.309372</x>
+    <y>22.48259</y>
+    <z>379.804016</z>
+  </Camera_x0020_Position>
+  <Camera_x0020_Rotation>
+    <x>0.6027082</x>
+    <y>0</y>
+    <z>0</z>
+    <w>0.797961652</w>
+    <eulerAngles>
+      <x>74.12821</x>
+      <y>0</y>
+      <z>0</z>
+    </eulerAngles>
+  </Camera_x0020_Rotation>
   <Interactable_x0020_Objects_x0020_Held>
-    <Interactable>false</Interactable>
-    <Interactable>false</Interactable>
+    <Interactable>true</Interactable>
     <Interactable>false</Interactable>
   </Interactable_x0020_Objects_x0020_Held>
   <Interactable_x0020_Objects_x0020_Position>
     <Interactable>
-      <x>-4.138025</x>
-      <y>1.499875</y>
-      <z>3.98336</z>
+      <x>210.884155</x>
+      <y>2.582586</y>
+      <z>384.5878</z>
     </Interactable>
     <Interactable>
-      <x>-2.58461761</x>
-      <y>1.49957764</y>
-      <z>-2.78233838</z>
-    </Interactable>
-    <Interactable>
-      <x>3.54</x>
-      <y>0.5</y>
-      <z>-2.73875962E-08</z>
+      <x>181.398331</x>
+      <y>0.552742</y>
+      <z>552.0469</z>
     </Interactable>
   </Interactable_x0020_Objects_x0020_Position>
   <Interactable_x0020_Objects_x0020_Rotation>
     <Interactable>
-      <x>-0.000151610366</x>
-      <y>0.8563652</y>
-      <z>-8.874383E-06</z>
-      <w>0.5163707</w>
+      <x>0</x>
+      <y>0.8777894</y>
+      <z>0</z>
+      <w>-0.479046881</w>
       <eulerAngles>
-        <x>359.9919</x>
-        <y>117.821762</y>
-        <z>359.9846</z>
+        <x>0</x>
+        <y>237.246338</y>
+        <z>0</z>
       </eulerAngles>
     </Interactable>
     <Interactable>
-      <x>-0.0006989692</x>
-      <y>0.917467356</y>
-      <z>-4.402468E-05</z>
-      <w>-0.397810459</w>
+      <x>0.5933953</x>
+      <y>0.431433678</y>
+      <z>0.467601538</z>
+      <w>0.493047416</w>
       <eulerAngles>
-        <x>0.0364915058</x>
-        <y>226.882721</y>
-        <z>359.928528</z>
-      </eulerAngles>
-    </Interactable>
-    <Interactable>
-      <x>-3.22566827E-08</x>
-      <y>4.348583E-09</y>
-      <z>3.6052878E-08</z>
-      <w>1</w>
-      <eulerAngles>
-        <x>-3.69634358E-06</x>
-        <y>4.983107E-07</y>
-        <z>4.13135558E-06</z>
+        <x>10.4668112</x>
+        <y>94.46216</y>
+        <z>98.27552</z>
       </eulerAngles>
     </Interactable>
   </Interactable_x0020_Objects_x0020_Rotation>
+  <Current_x0020_Scene>2</Current_x0020_Scene>
+  <Should_x0020_The_x0020_Scene_x0020_Load>false</Should_x0020_The_x0020_Scene_x0020_Load>
 </SaveLoadManager>
