@@ -17,23 +17,30 @@ public class CursorInfo : MonoBehaviour
     {
         ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-        if(Physics.Raycast(ray, out hit, float.PositiveInfinity))
+        if (Physics.Raycast(ray, out hit, float.PositiveInfinity))
         {
-            switch(hit.collider.gameObject.layer)
+            switch (hit.collider.gameObject.layer)
             {
+                case 11:
+                    Cursor.SetCursor(interactive,Vector2.zero, CursorMode.Auto);
+                    break;
                 case 8:
-                    Cursor.SetCursor(walkable, Vector2.zero, CursorMode.Auto);
-                    break;
-                case 9:
-                    Cursor.SetCursor(interactive, Vector2.zero, CursorMode.Auto);
-                    break;
-                case 10:
-                    Cursor.SetCursor(dropable, Vector2.zero, CursorMode.Auto);
-                    break;
-                default:
-                    Cursor.SetCursor(NonInteractive, Vector2.zero, CursorMode.Auto);
-                    break;
+                Cursor.SetCursor(walkable, Vector2.zero, CursorMode.Auto);
+                break;
+            case 9:
+            case 12:
+                Cursor.SetCursor(interactive, Vector2.zero, CursorMode.Auto);
+                break;
+
+            case 10:
+                Cursor.SetCursor(dropable, Vector2.zero, CursorMode.Auto);
+                break;
+            default:
+                Cursor.SetCursor(NonInteractive, Vector2.zero, CursorMode.Auto);
+                break;
+
             }
+        
         }
     }
 }

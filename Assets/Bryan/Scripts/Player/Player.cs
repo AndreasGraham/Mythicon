@@ -45,7 +45,7 @@ public class Player : MonoBehaviour
 		PickUpObject();
 		DropObject();
 	}
-
+   
 	// Method to move the player
 	Vector3 ClickToMove()
 	{
