@@ -8,13 +8,36 @@ public class Controller : MonoBehaviour
 {
     public GameObject inGameMenu;
     bool ingame;
+    //==============================================
+
+    [SerializeField]
+    private GameObject flowerQuestPanel;
+
+    [SerializeField]
+    private GameObject itemCounterPanel;
+
+    [SerializeField]
+    private Text questText;
+
+    [SerializeField]
+    private Text counterText;
+
+    ItemCounter flower;
+
+    //==============================================
     // Use this for initialization
     void Awake()
     {
         inGameMenu.SetActive(false);
         ingame = true;
+
+        flowerQuestPanel.SetActive(false);
+        itemCounterPanel.SetActive(false);
+
+        flower = gameObject.GetComponent<ItemCounter>();
     }
 
+    //==============================================
     // Update is called once per frame
     void Update()
     {
@@ -34,13 +57,36 @@ public class Controller : MonoBehaviour
             }
             ingame = !ingame;
         }
+
+    //==============================================
+
+        if (Input.GetKey(KeyCode.Space))
+        {
+            flowerQuestPanel.SetActive(true);
+            itemCounterPanel.SetActive(true);
+        }
+
+        if (flowerQuestPanel.activeInHierarchy == true)
+        {
+            questText.text = "Pick Flowers";
+            counterText.text = "Flowers: " + flower.GetItemCount() + "/" + flower.GetCollectLimit(); 
+        }
+
+        if(flower.GetItemCount() >= flower.GetCollectLimit())
+        {
+            questText.text = "Go To Village";
+            counterText.text = "Flowers: Completed " + flower.GetItemCount() + "/" + flower.GetCollectLimit();
+        }
         
     }
 
+    //==============================================
     public void MainMenu()
     {
         SceneManager.LoadScene(0);
     }
+
+    //==============================================
 
     public void QuitGame()
     {

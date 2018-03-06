@@ -29,7 +29,7 @@ public class ItemInteract : MonoBehaviour
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
-            if (hit.collider.gameObject.layer == 12 && Vector3.Distance(transform.position, hit.transform.position))
+            if (hit.collider.gameObject.layer == 12 && Vector3.Distance(transform.position, hit.transform.position) < 1f)
             {
                 anim.SetIsPickingUp(true);
                 count.SetItem(2);
