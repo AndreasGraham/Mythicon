@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
 	// NavMeshAgent to be able to use the NavMesh for movement
 	NavMeshAgent agent;
 
+    CameraManager camManager;
+
     [SerializeField]
     GameObject[] children;
 
@@ -35,6 +37,8 @@ public class Player : MonoBehaviour
         animations = GetComponent<PlayerAnimation>();
 
         isInteractive = false;
+
+        camManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
 	}
 	
 	// Update is called once per frame
@@ -81,7 +85,7 @@ public class Player : MonoBehaviour
 		if (Input.GetMouseButtonDown(0))
 		{
 			// Cast a ray from the camera to the mouse position
-			ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            ray = camManager.GetCurrentCamera().ScreenPointToRay(Input.mousePosition);
 
 			// Move the player to where the ray hit
 			if (Physics.Raycast(ray, out hit, 100f))
@@ -155,7 +159,7 @@ public class Player : MonoBehaviour
 		if (Input.GetMouseButtonDown(0))
 		{            
 			// Cast a ray from the camera to the mouse position
-			ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            ray = camManager.GetCurrentCamera().ScreenPointToRay(Input.mousePosition);
 
 			// Move the player to where the ray hit
 			if (Physics.Raycast(ray, out hit, 100f))
