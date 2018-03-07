@@ -54,6 +54,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4399422703683366}
   - component: {fileID: 95911511927996364}
+  - component: {fileID: 114077462117188594}
   m_Layer: 0
   m_Name: Deer
   m_TagString: Untagged
@@ -368,6 +369,24 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114077462117188594
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1095798972356308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c38dbc52ba2613408aec447b8360eaf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hop:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  Strength: 0
 --- !u!114 &114782083158360774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -380,7 +399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   WanderRadius: 30.46
-  WanderTimer: 2
+  WanderTimer: 3.3
   Target: {fileID: 0}
   EvadeDist: 10
 --- !u!195 &195617758049937974
@@ -398,7 +417,7 @@ NavMeshAgent:
   m_AngularSpeed: 120
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 0
+  m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 5
   m_BaseOffset: 0

@@ -50,9 +50,6 @@ public class PillarManager
                 break;
         }
 
-                               //one big condition
-        allPillarsAtive = (pillar1 && pillar2 && pillar3);
-
 
         if(pillar1 == true && pillar2 == true && pillar3 == true)
         {
