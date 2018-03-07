@@ -43,9 +43,19 @@ public class ItemInteract : MonoBehaviour
     {
         if (hit.collider.gameObject.layer == 12 && Vector3.Distance(transform.position, hit.transform.position) < 1f)
         {
+<<<<<<< HEAD
             anim.SetIsPickingUp(true);
             count.SetItem(noOfItems);
         }
+=======
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            if (hit.collider.gameObject.layer == 12 && Vector3.Distance(transform.position, hit.transform.position) < 1f)
+            {
+                anim.SetIsPickingUp(true);
+                count.SetItem(2);
+            }
+>>>>>>> 5d4f98721e48ced15b9f184aee39b2eef024003d
 
         if(anim.GetIsPickingUp())
             anim.SetIsPickingUp(false);
