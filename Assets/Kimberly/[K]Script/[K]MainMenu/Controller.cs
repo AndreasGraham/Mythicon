@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Controller : MonoBehaviour
 {
+    [SerializeField]
+    private Text counterText;
     public GameObject inGameMenu;
     bool ingame;
     //==============================================
@@ -19,25 +21,21 @@ public class Controller : MonoBehaviour
     [SerializeField]
     private Text questText;
 
-    [SerializeField]
-    private Text counterText;
 
     ItemCounter flower;
-
-    //==============================================
     // Use this for initialization
     void Awake()
     {
         inGameMenu.SetActive(false);
         ingame = true;
 
-        flowerQuestPanel.SetActive(false);
-        itemCounterPanel.SetActive(false);
+       
+
+
 
         flower = gameObject.GetComponent<ItemCounter>();
     }
 
-    //==============================================
     // Update is called once per frame
     void Update()
     {
@@ -58,35 +56,28 @@ public class Controller : MonoBehaviour
             ingame = !ingame;
         }
 
-    //==============================================
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            flowerQuestPanel.SetActive(true);
-            itemCounterPanel.SetActive(true);
-        }
-
-        if (flowerQuestPanel.activeInHierarchy == true)
-        {
-            questText.text = "Pick Flowers";
-            counterText.text = "Flowers: " + flower.GetItemCount() + "/" + flower.GetCollectLimit(); 
-        }
-
         if(flower.GetItemCount() >= flower.GetCollectLimit())
         {
-            questText.text = "Go To Village";
-            counterText.text = "Flowers: Completed " + flower.GetItemCount() + "/" + flower.GetCollectLimit();
+            questText.text = "Go to the Village";
+            counterText.text = "Flowers: Completed";
         }
-        
+        else
+        {
+            questText.text = "Pick Flowers";
+            counterText.text = "Flowers: " + flower.GetItemCount() + "/" + flower.GetCollectLimit();
+        }
     }
 
-    //==============================================
     public void MainMenu()
     {
         SceneManager.LoadScene(0);
     }
 
-    //==============================================
+    public void ReturnToGame()
+    {
+        inGameMenu.SetActive(false);
+        Time.timeScale = 1;
+    }
 
     public void QuitGame()
     {

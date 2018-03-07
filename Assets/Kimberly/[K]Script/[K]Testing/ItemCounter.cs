@@ -13,17 +13,16 @@ public class ItemCounter : MonoBehaviour {
     {
         item += newItem;
         if (item >= collectLimit)
-        if(item >= collectLimit)
-        {
+		{
             item = collectLimit;
         }
     }
-
+	
     public int GetItemCount()
     {
         return item;
     }
-
+	
     public int GetCollectLimit()
     {
         return collectLimit;
