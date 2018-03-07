@@ -7,6 +7,9 @@ TagManager:
   - Interactable
   - Environment Handler
   - Dropable_Area
+  - puzzle2Red
+  - puzzle2Green
+  - puzzle2Blue
   layers:
   - Default
   - TransparentFX
