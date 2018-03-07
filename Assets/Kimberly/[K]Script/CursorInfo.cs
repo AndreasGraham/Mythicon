@@ -12,6 +12,7 @@ public class CursorInfo : MonoBehaviour
     public Texture2D NonInteractive;
     public Texture2D dropable;
 
+
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -24,6 +25,7 @@ public class CursorInfo : MonoBehaviour
                 case 8:
                     Cursor.SetCursor(walkable, Vector2.zero, CursorMode.Auto);
                     break;
+                case 12:
                 case 9:
                     Cursor.SetCursor(interactive, Vector2.zero, CursorMode.Auto);
                     break;

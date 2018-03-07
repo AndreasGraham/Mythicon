@@ -12,6 +12,8 @@ public class TutorialUI : MonoBehaviour
 
    [SerializeField]
     private Text left;
+
+    Player player;
     // Use this for initialization
     void Start()
     {
