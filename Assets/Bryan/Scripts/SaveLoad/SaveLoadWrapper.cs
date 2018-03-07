@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class SaveLoadWrapper :  MonoBehaviour
 {
     SaveLoad saveLoad1 = new SaveLoad();
 
-    void Awake()
-    {
-        saveLoad1.playerPosScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerSaveLoad>();
-        saveLoad1.playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
-        saveLoad1.playerRot = GameObject.FindGameObjectWithTag("Player").transform.rotation; 
-        saveLoad1.interactableObjs = GameObject.FindGameObjectsWithTag("Interactable");
-    }
-
-    public void Save(string playerSaveName)
+    public void Save()
     {
         int i = 0;
+
+        saveLoad1.playerPosScript = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerSaveLoad>();
+        saveLoad1.playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+        saveLoad1.playerRot = GameObject.FindGameObjectWithTag("Player").transform.rotation;
+        saveLoad1.cameraPos = GameObject.FindGameObjectWithTag("MainCamera").transform.position;
+        saveLoad1.cameraRot = GameObject.FindGameObjectWithTag("MainCamera").transform.rotation;
+        saveLoad1.interactableObjs = GameObject.FindGameObjectsWithTag("Interactable");
 
         saveLoad1.interActableObjsPos = new Vector3[saveLoad1.interactableObjs.Length];
         saveLoad1.interactableObjsRot = new Quaternion[saveLoad1.interactableObjs.Length];
@@ -41,50 +41,16 @@ public class SaveLoadWrapper :  MonoBehaviour
         saveLoad1.enviroObjs = GameObject.FindGameObjectsWithTag("Dropable_Area");
         saveLoad1.playerPos = saveLoad1.playerPosScript.playerPos;
         saveLoad1.playerRot = saveLoad1.playerPosScript.playerRot;
-        saveLoad1.Save(playerSaveName);
+        saveLoad1.sceneIndex = saveLoad1.playerPosScript.sceneIndex;
+        saveLoad1.shouldLoad = false;
+        saveLoad1.Save("Save1");
     }
 
-    public void Load(string playerSaveName)
+    public void Load()
     {
-        
-        saveLoad1 = SaveLoad.Load(playerSaveName);
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
-        GameObject[] interactableObjs = GameObject.FindGameObjectsWithTag("Interactable");
-        GameObject[] enviroObjs = GameObject.FindGameObjectsWithTag("Dropable_Area");
-
-        InteractableObjects[] interactableScripts = new InteractableObjects[interactableObjs.Length];
-        for(int k = 0; k < interactableObjs.Length; k++)
-        {
-            interactableScripts[k] = interactableObjs[k].GetComponent<InteractableObjects>();
-        }
-
-        player.transform.position = saveLoad1.playerPos;
-        player.transform.rotation = saveLoad1.playerRot;
-        player.GetComponent<NavMeshAgent>().SetDestination(player.transform.position);
-
-        int i = 0;
-        foreach (GameObject objs in interactableObjs)
-        {
-            for (; i < interactableObjs.Length; i++)
-            {
-                interactableObjs[i].transform.position = saveLoad1.interActableObjsPos[i];
-                interactableObjs[i].transform.rotation = saveLoad1.interactableObjsRot[i];
-                interactableScripts[i].isBeingHeld = saveLoad1.isInteractableHeld[i];
-
-                if (interactableScripts[i].isBeingHeld)
-                {
-                    interactableObjs[i].GetComponent<Rigidbody>().isKinematic = true;
-                    interactableObjs[i].transform.parent = player.transform;
-
-                }
-                else
-                    interactableObjs[i].transform.parent = GameObject.FindGameObjectWithTag("Environment Handler").transform;
-
-                break;
-            }
-
-            i++;
-        }
-
+        saveLoad1 = SaveLoad.Load("Save1");
+        saveLoad1.shouldLoad = true;
+        saveLoad1.Save("Save1");
+        SceneManager.LoadScene(saveLoad1.sceneIndex);
    }
 }

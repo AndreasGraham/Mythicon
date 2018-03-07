@@ -7,57 +7,64 @@ using UnityEngine.SceneManagement;
 public class Controller : MonoBehaviour
 {
     [SerializeField]
-    private GameObject inGameMenu;
-    [SerializeField]
-    private GameObject pickFlowerPanel;
-    [SerializeField]
-    private GameObject flowerNumberPanel;
-    //==================================================
-
-    [SerializeField]
-    private Text pickText;
-    [SerializeField]
     private Text counterText;
-    //==================================================
+    public GameObject inGameMenu;
+    bool ingame;
+    //==============================================
 
-    ItemCounter flowers;
+    [SerializeField]
+    private GameObject flowerQuestPanel;
+
+    [SerializeField]
+    private GameObject itemCounterPanel;
+
+    [SerializeField]
+    private Text questText;
+
+
+    ItemCounter flower;
     // Use this for initialization
     void Awake()
     {
         inGameMenu.SetActive(false);
+        ingame = true;
 
-        flowers = gameObject.GetComponent<ItemCounter>();
+       
+
+
+
+        flower = gameObject.GetComponent<ItemCounter>();
     }
-    //==================================================
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (inGameMenu.activeSelf)
+            switch (ingame)
             {
-                inGameMenu.SetActive(false);
-                Time.timeScale = 1;
+                case true:
+                    inGameMenu.SetActive(true);
+                    Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
+                    Time.timeScale = 0;
+                    break;
+                case false:
+                    inGameMenu.SetActive(false);
+                    Time.timeScale = 1;
+                    break;
             }
-            else
-            {
-                inGameMenu.SetActive(true);
-                Time.timeScale = 0;
-            }
+            ingame = !ingame;
         }
 
-    //==================================================
-
-        if(flowers.GetItem() >= flowers.GetCollectedLimit())
+        if(flower.GetItemCount() >= flower.GetCollectLimit())
         {
-            pickText.text = "Go to the Village";
+            questText.text = "Go to the Village";
             counterText.text = "Flowers: Completed";
         }
         else
         {
-            pickText.text = "Pick Flowers";
-            counterText.text = "Flowers: " + flowers.GetItem() + "/" + flowers.GetCollectedLimit();
+            questText.text = "Pick Flowers";
+            counterText.text = "Flowers: " + flower.GetItemCount() + "/" + flower.GetCollectLimit();
         }
     }
 
@@ -65,14 +72,12 @@ public class Controller : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
-    //==================================================
 
     public void ReturnToGame()
     {
         inGameMenu.SetActive(false);
         Time.timeScale = 1;
     }
-    //==================================================
 
     public void QuitGame()
     {

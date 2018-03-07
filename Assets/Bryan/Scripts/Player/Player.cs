@@ -22,6 +22,10 @@ public class Player : MonoBehaviour
     PlayerAnimation animations;
     Vector3 hitPoint;
     GameObject heldItem;
+
+    [SerializeField]
+    private bool isInteractive;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -29,10 +33,12 @@ public class Player : MonoBehaviour
 		agent = GetComponent<NavMeshAgent>();
 
         animations = GetComponent<PlayerAnimation>();
+
+        isInteractive = false;
 	}
 	
 	// Update is called once per frame
-	void Update () 
+	void FixedUpdate () 
 	{
         // Debug Forward
 
@@ -45,6 +51,28 @@ public class Player : MonoBehaviour
 		PickUpObject();
 		DropObject();
 	}
+
+    // Check to see if the player is in an interactable area
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "InteractableArea")
+        {
+            isInteractive = true;
+        }
+    }
+
+    // Check to see if the player has left an interactable area
+    void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "InteractableArea")
+            isInteractive = false;
+    }
+
+    // Return if the player is in an interactable area or not
+    public bool GetInInteractiveArea()
+    {
+        return isInteractive;
+    }
 
 	// Method to move the player
 	Vector3 ClickToMove()
@@ -134,14 +162,15 @@ public class Player : MonoBehaviour
 			{				
                 if (hit.collider.gameObject.layer == 9 && Vector3.Distance(transform.position, hit.transform.position) < 2f)
 				{
-                    
+                    Debug.Log(transform.forward);
+                    heldPosition = Vector3.zero;                
+                    //heldPosition = new Vector3(.5f, 0f, .5f);
                     hit.transform.parent = transform;
                     hit.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
                     hit.transform.GetComponent<Rigidbody>().isKinematic = true;
-                    heldPosition = Vector3.zero;                
-                    heldPosition = transform.position + (transform.forward * .03f);
-                    heldPosition.y += transform.lossyScale.y * 1.05f;
-                    hit.transform.position = heldPosition;
+
+                    heldPosition.y = (transform.lossyScale.y / 2f);
+                    hit.transform.localPosition = heldPosition;
                     heldItem = hit.transform.gameObject;
                     heldParent = hit.transform.parent;
                     

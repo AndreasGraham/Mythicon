@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemCounter : MonoBehaviour
-{
-  
-    private int item = 0;
-    
+public class ItemCounter : MonoBehaviour {
+
+   
+    private int item;
 
     [SerializeField]
     private int collectLimit;
@@ -19,13 +18,13 @@ public class ItemCounter : MonoBehaviour
             item = collectLimit;
         }
     }
-
-    public int GetItem()
+	
+    public int GetItemCount()
     {
         return item;
     }
-
-    public int GetCollectedLimit()
+	
+    public int GetCollectLimit()
     {
         return collectLimit;
     }

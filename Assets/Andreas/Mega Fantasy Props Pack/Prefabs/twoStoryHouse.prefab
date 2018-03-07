@@ -454,7 +454,7 @@ GameObject:
   - component: {fileID: 33026793051658272}
   - component: {fileID: 23832427478790672}
   - component: {fileID: 64507698854571176}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: wood_stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1865,9 +1865,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1553891339657914}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -150.71902, y: -6.868921, z: 31.570614}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0.71882993, z: -0, w: -0.69518596}
+  m_LocalPosition: {x: 415.3, y: -13.8099985, z: 81.4}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 4186276675426316}
   - {fileID: 4535609869973506}
@@ -1921,7 +1921,7 @@ Transform:
   - {fileID: 4915403427338536}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 268.08398, z: 0}
 --- !u!4 &4599565692728702
 Transform:
   m_ObjectHideFlags: 1

@@ -7,11 +7,15 @@ using UnityEngine;
 
 public class EnviroSaveLoad : MonoBehaviour 
 {
-    [SerializeField, XmlAttribute("Interactable")]
-    Transform objectPos;
+    [XmlAttribute("Drop Area Position")]
+    Vector3 objectPos;
+
+    [XmlAttribute("Drop Area Rotation")]
+    Quaternion objectRot;
 
     void Update()
     {
-        objectPos = transform;
+        objectPos = transform.position;
+        objectRot = transform.rotation;
     }
 }
