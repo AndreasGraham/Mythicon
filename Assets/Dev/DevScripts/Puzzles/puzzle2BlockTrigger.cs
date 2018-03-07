@@ -5,7 +5,9 @@ using UnityEngine;
 public class puzzle2BlockTrigger : MonoBehaviour {
     // the first puzzle trigger
 
-        // tracks if any object is in the placement space
+
+    // tracks if any object is in the placement space
+    [SerializeField]
     public static bool colliderTriggerA;
 	// Use this for initialization
 	void Start () {
@@ -25,7 +27,8 @@ public class puzzle2BlockTrigger : MonoBehaviour {
         if(other.tag == "puzzle2Red" && puzzle2BlockTriggerB.colliderTriggerB == false && puzzle2BlocktriggerC.colliderTriggerC == false)
         {
             // sets puzzle manager, red bool to true
-            puzzle2Manager.red = true;
+            puzzle2Manager.SetRed(true);
+            Debug.Log("Red Triggered" + puzzle2Manager.red);
         }
         
     }

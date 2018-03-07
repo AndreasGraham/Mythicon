@@ -55,8 +55,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 455144}
+  - component: {fileID: 20989474262022790}
+  - component: {fileID: 81342761305926472}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: Clan Sword Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +74,7 @@ GameObject:
   - component: {fileID: 455146}
   - component: {fileID: 9555138}
   - component: {fileID: 2355140}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: sword_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,22 +126,22 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 155144}
-  m_LocalRotation: {x: 7.105428e-15, y: -0.7071068, z: 7.105428e-15, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0.08}
+  m_LocalRotation: {x: -0.5560207, y: -0.3371214, z: 0.59361374, w: -0.47414443}
+  m_LocalPosition: {x: 0.16460308, y: 0.2145, z: -0.006100006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 455146}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 68.05, y: -65.607, z: 210.19899}
 --- !u!4 &455146
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 155146}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 10}
+  m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 211.04, y: 4.25, z: 236.84}
+  m_LocalScale: {x: 100.00006, y: 100.00006, z: 100}
   m_Children:
   - {fileID: 455144}
   - {fileID: 455142}
@@ -147,7 +149,7 @@ Transform:
   - {fileID: 455138}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!23 &2355138
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -247,3 +249,46 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 155146}
   m_IsPrefabParent: 1
+--- !u!20 &20989474262022790
+Camera:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155144}
+  m_Enabled: 1
+  serializedVersion: 2
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_NormalizedViewPortRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
+  near clip plane: 0.3
+  far clip plane: 1000
+  field of view: 60
+  orthographic: 0
+  orthographic size: 5
+  m_Depth: 0
+  m_CullingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_RenderingPath: -1
+  m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
+  m_TargetEye: 3
+  m_HDR: 1
+  m_AllowMSAA: 1
+  m_ForceIntoRT: 0
+  m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: 0.022
+  m_StereoMirrorMode: 0
+--- !u!81 &81342761305926472
+AudioListener:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155144}
+  m_Enabled: 0

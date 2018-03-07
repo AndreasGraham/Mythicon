@@ -22,9 +22,10 @@ GameObject:
   - component: {fileID: 33849622579699888}
   - component: {fileID: 23586247067166196}
   - component: {fileID: 65663138639565966}
-  - component: {fileID: 114979569141585260}
+  - component: {fileID: 114195711052194040}
+  - component: {fileID: 114856116647865928}
   m_Layer: 0
-  m_Name: SecretTrigger
+  m_Name: GreenGraveYardTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -94,7 +95,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.99999994, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &114979569141585260
+--- !u!114 &114195711052194040
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -102,9 +103,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 1367184130128632}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5db530935a7cd264188524a7b5d57216, type: 3}
+  m_Script: {fileID: 11500000, guid: d3869b2b7f299d54da9e322c1a379a05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameras:
-  - {fileID: 0}
-  - {fileID: 0}
+--- !u!114 &114856116647865928
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1367184130128632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2475ca593e06e254e9fe1f94d26a4bb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

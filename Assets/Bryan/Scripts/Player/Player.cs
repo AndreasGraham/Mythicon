@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     CameraManager camManager;
 
     [SerializeField]
-    GameObject[] children;
+    GameObject[] children = new GameObject[4];
 
     [SerializeField]
     Vector3 heldPosition;
@@ -39,6 +39,11 @@ public class Player : MonoBehaviour
         isInteractive = false;
 
         camManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
+
+//        children[0] = GameObject.Find("RedRock");
+//        children[1] = GameObject.Find("GreenRock");
+//        children[2] = GameObject.Find("BlueRock");
+//        children[3] = GameObject.Find("sword_4");
 	}
 	
 	// Update is called once per frame
@@ -112,6 +117,7 @@ public class Player : MonoBehaviour
                         }
                         break;
                     case 9:
+                    case 14:
                         if (agent.stoppingDistance != 1.75f)
                             agent.stoppingDistance = 1.75f;
 
@@ -164,11 +170,11 @@ public class Player : MonoBehaviour
 			// Move the player to where the ray hit
 			if (Physics.Raycast(ray, out hit, 100f))
 			{				
-                if (hit.collider.gameObject.layer == 9 && Vector3.Distance(transform.position, hit.transform.position) < 2f)
+                if (hit.collider.gameObject.layer == 14 && Vector3.Distance(transform.position, hit.transform.position) < 2f)
 				{
                     Debug.Log(transform.forward);
                     heldPosition = Vector3.zero;                
-                    //heldPosition = new Vector3(.5f, 0f, .5f);
+                    heldPosition = new Vector3(.5f, 0f, .5f);
                     hit.transform.parent = transform;
                     hit.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
                     hit.transform.GetComponent<Rigidbody>().isKinematic = true;
@@ -191,14 +197,15 @@ public class Player : MonoBehaviour
 		if (Input.GetMouseButtonDown(1))
 		{
             animations.SetIsCarrying(false);
-            GameObject[] children = GameObject.FindGameObjectsWithTag("Interactable");
+
+
             
             foreach(GameObject child in children)
             {
                 if(child.transform.parent == gameObject.transform)
                 {
                     child.GetComponent<Rigidbody>().isKinematic = false;
-                    child.transform.parent = GameObject.FindGameObjectWithTag("Environment Handler").transform;
+                    child.transform.parent = null;
                 }
             }
         }

@@ -34,7 +34,8 @@ public class puzzle2BlockTriggerB : MonoBehaviour {
         if (other.tag == "puzzle2Green" && puzzle2Manager.red == true && puzzle2BlocktriggerC.colliderTriggerC == false)
         {
             // sets puzzle manager, green bool to true
-            puzzle2Manager.green = true;
+            puzzle2Manager.SetGreen(true);
+            Debug.Log("Green Trigger True");
            // puzzle2Manager.checkDone();
         }
 
