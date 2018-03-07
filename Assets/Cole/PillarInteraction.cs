@@ -59,13 +59,6 @@ public class PillarManager
             allPillarsAtive = true;
         }
 
-            if(Pillars = true)
-        {
-            PillarCheck = true;
-        }
-
-
-
     }
 
 }
