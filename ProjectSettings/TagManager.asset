@@ -9,6 +9,7 @@ TagManager:
   - Dropable_Area
   - CameraManager
   - Collectable
+  - PuzzleManager
   layers:
   - Default
   - TransparentFX

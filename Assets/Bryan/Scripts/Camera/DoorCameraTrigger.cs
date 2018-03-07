@@ -5,6 +5,7 @@ using UnityEngine;
 public class DoorCameraTrigger : MonoBehaviour 
 {
     CameraManager camManager;
+
     [SerializeField]
     Camera[] cameras;
 
@@ -15,7 +16,6 @@ public class DoorCameraTrigger : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        Debug.Log("wow");
         if (other.CompareTag("Player"))
         {   
             if (camManager.GetCurrentCamera() == cameras[0])

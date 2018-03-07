@@ -13,10 +13,15 @@ public class FirstPuzzle : MonoBehaviour {
     public GameObject clanFire;
 
     bool puzzleCompletion;
+    bool animationPlayed;
 
 	// Use this for initialization
-	void Start () {
+	void Start () 
+    {
         puzzleCompletion = false;
+        animationPlayed = false;
+        clanFire.SetActive(false);
+        clanSword.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -41,4 +46,19 @@ public class FirstPuzzle : MonoBehaviour {
             puzzleCompletion = true;
         }
 	}
+
+    public bool GetPuzzleComplete()
+    {
+        return puzzleCompletion;
+    }
+
+    public bool GetAnimationPlayed()
+    {
+        return animationPlayed;
+    }
+
+    public void SetAnimationPlayed(bool isPlayed)
+    {
+        animationPlayed = isPlayed;
+    }
 }

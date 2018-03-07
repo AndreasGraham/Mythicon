@@ -6,6 +6,7 @@ public class CameraManager : MonoBehaviour
 {
     [SerializeField]
     private Camera currentCamera;
+    private Camera prevCamera;
 
 	// Use this for initialization
 	void Start () 
@@ -18,15 +19,22 @@ public class CameraManager : MonoBehaviour
         
         newCamera.enabled = true;
         currentCamera.enabled = false;
+
         currentCamera.gameObject.GetComponent<AudioListener>().enabled = false;
         if (!newCamera.gameObject.GetComponent<AudioListener>().enabled)
             newCamera.gameObject.GetComponent<AudioListener>().enabled = true;
-        
+
+        prevCamera = currentCamera;
         currentCamera = newCamera;
     }
 
     public Camera GetCurrentCamera()
     {
         return currentCamera;
+    }
+
+    public Camera GetPreviousCamera()
+    {
+        return prevCamera;
     }
 }

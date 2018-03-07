@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9580968}
   - component: {fileID: 114313456899309606}
   - component: {fileID: 114454699208176818}
+  - component: {fileID: 65393560272330952}
   m_Layer: 9
   m_Name: staff
   m_TagString: Collectable
@@ -42,6 +43,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
@@ -57,6 +59,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -100,6 +103,18 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 180968}
   m_IsPrefabParent: 1
+--- !u!65 &65393560272330952
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 180968}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0057279523, y: 0.03711404, z: 0.0069518555}
+  m_Center: {x: -0.00055771833, y: 0.0014197612, z: -0.00027495343}
 --- !u!114 &114313456899309606
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -111,10 +126,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ea98715228136c40996cc342fb8089c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPos: {x: 0, y: 0, z: 0}
-  objectRot: {x: 0, y: 0, z: 0, w: 0}
-  objectScale: {x: 0, y: 0, z: 0}
-  layerIndex: 0
+  objectPos: {x: 319.486, y: 9.678, z: 266.566}
+  objectRot: {x: 0.18137762, y: -0, z: -0, w: 0.9834135}
+  objectScale: {x: 100, y: 100, z: 100}
+  layerIndex: 9
   isBeingHeld: 0
 --- !u!114 &114454699208176818
 MonoBehaviour:
