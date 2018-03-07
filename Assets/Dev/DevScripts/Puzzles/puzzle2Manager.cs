@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class puzzle2Manager : MonoBehaviour {
+public class puzzle2Manager : MonoBehaviour 
+{
     public static bool red;
     public static bool green;
     public static bool blue;
@@ -33,4 +34,18 @@ public class puzzle2Manager : MonoBehaviour {
         }
     }*/
 
+    public static void SetRed(bool redComplete)
+    {
+        red = redComplete;
+    }
+
+    public static void SetBlue(bool blueComplete)
+    {
+        blue = blueComplete;
+    }
+
+    public static void SetGreen(bool greenComplete)
+    {
+        green = greenComplete;
+    }
 }

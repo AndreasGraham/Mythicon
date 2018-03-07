@@ -23,7 +23,8 @@ public class puzzle2BlocktriggerC : MonoBehaviour {
         if (other.tag == "puzzle2Blue" && puzzle2Manager.red == true && puzzle2Manager.green == true)
         {
             // sets puzzle manager, blue bool to true
-            puzzle2Manager.blue = true;
+            puzzle2Manager.SetBlue(true);
+            Debug.Log("Blue Trigger True");
             //puzzle2Manager.checkDone();
         }
     }
