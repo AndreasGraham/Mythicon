@@ -6,6 +6,7 @@ public class ItemCounter : MonoBehaviour
 {
   
     private int item = 0;
+    
 
     [SerializeField]
     private int collectLimit;
