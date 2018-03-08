@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,14 +9,20 @@ public class puzzle2Manager : MonoBehaviour
     [SerializeField] static bool green;
     [SerializeField] static bool blue;
     [SerializeField] GameObject completionFire;
+    [SerializeField] GameObject completionObj;
+    [SerializeField] Camera completionCam;
+    
+    CameraManager camManager;
 
 	// Use this for initialization
 	void Start ()
     {
+        camManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
         red = false;
         green = false;
         blue = false;
-        completionFire.SetActive(false);       
+        completionFire.SetActive(false);
+        completionObj.SetActive(false);       
 	}
 	
 	// Update is called once per frame
@@ -25,10 +31,13 @@ public class puzzle2Manager : MonoBehaviour
 		if(blue) // Took away "= true" as it's not needed
         {
             completionFire.SetActive(true);
+            completionObj.SetActive(true); // Added the completion object to take to the village center stones
+            camManager.ChangeCamera(completionCam); // Added a "dramatic" camera change
+            StartCoroutine("CameraDelay"); // Added a delay to see the object for 5 seconds and switch back to the previous camera.
         }
 	}
 
-    // Since the bools are now private, I created setters and getters for them.
+    // Since the bools are now private, I created setters and getters for them. This makes changes to these variables intentional.
     public static void SetRed(bool redComplete)
     {
         red = redComplete;
@@ -58,4 +67,19 @@ public class puzzle2Manager : MonoBehaviour
     {
         return green;
     }
+
+    // Coroutine that has the camera delayed before switching back to the previous camera
+    IEnumerator CameraDelay()
+    {
+        int counter = 0;
+        
+        while(counter < 6)
+        {
+            counter++;
+            
+            yield return new WaitForSeconds(1);
+        }
+
+        camManager.CameraChange(camManager.prevCamera);
+    } 
 }
