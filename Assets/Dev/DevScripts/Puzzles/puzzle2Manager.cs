@@ -4,39 +4,39 @@ using UnityEngine;
 
 public class puzzle2Manager : MonoBehaviour 
 {
-    public static bool red;
-    public static bool green;
-    public static bool blue;
-    public GameObject completionFire;
+    // Here I made everything private, but available to set in the editor
+    [SerializeField] static bool red;
+    [SerializeField] static bool green;
+    [SerializeField] static bool blue;
+    [SerializeField] GameObject completionFire;
+
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         red = false;
         green = false;
         blue = false;
-        completionFire.SetActive(false);
-       
+        completionFire.SetActive(false);       
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        //Debug.Log(blue);
-		if(blue == true)
+	void Update ()
+    {
+		if(blue) // Took away "= true" as it's not needed
         {
             completionFire.SetActive(true);
         }
 	}
 
-    /*public static void checkDone()
-    {
-        if (blue == true)
-        {
-            completionFire.SetActive(true);
-        }
-    }*/
-
+    // Since the bools are now private, I created setters and getters for them.
     public static void SetRed(bool redComplete)
     {
         red = redComplete;
+    }
+
+    public static bool GetRed()
+    {
+        return red;
     }
 
     public static void SetBlue(bool blueComplete)
@@ -44,8 +44,18 @@ public class puzzle2Manager : MonoBehaviour
         blue = blueComplete;
     }
 
+    public static bool GetBlue()
+    {
+        return blue;
+    }
+
     public static void SetGreen(bool greenComplete)
     {
         green = greenComplete;
+    }
+
+    public static bool GetGreen()
+    {
+        return green;
     }
 }
