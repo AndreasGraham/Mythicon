@@ -32,7 +32,7 @@ public class puzzle2Manager : MonoBehaviour
         {
             completionFire.SetActive(true);
             completionObj.SetActive(true); // Added the completion object to take to the village center stones
-            camManager.ChangeCamera(completionCam); // Added a "dramatic" camera change
+            camManager.ChangeCameras(completionCam); // Added a "dramatic" camera change
             StartCoroutine("CameraDelay"); // Added a delay to see the object for 5 seconds and switch back to the previous camera.
         }
 	}
@@ -80,6 +80,6 @@ public class puzzle2Manager : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
 
-        camManager.CameraChange(camManager.prevCamera);
+        camManager.ChangeCameras(camManager.GetPreviousCamera());
     } 
 }
