@@ -16,6 +16,10 @@ TagManager:
   - Collectable
   - Flowers
   - Carryable
+  - CyanButton
+  - MagentaButton
+  - YellowButton
+  - KeyButton
   layers:
   - Default
   - TransparentFX
