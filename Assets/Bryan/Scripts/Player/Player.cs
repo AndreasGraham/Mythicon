@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     CameraManager camManager;
 
     [SerializeField]
-    GameObject[] children = new GameObject[4];
+    GameObject[] children = new GameObject[5];
 
     [SerializeField]
     Vector3 heldPosition;
@@ -39,11 +39,6 @@ public class Player : MonoBehaviour
         isInteractive = false;
 
         camManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
-
-//        children[0] = GameObject.Find("RedRock");
-//        children[1] = GameObject.Find("GreenRock");
-//        children[2] = GameObject.Find("BlueRock");
-//        children[3] = GameObject.Find("sword_4");
 	}
 	
 	// Update is called once per frame
@@ -197,8 +192,6 @@ public class Player : MonoBehaviour
 		if (Input.GetMouseButtonDown(1))
 		{
             animations.SetIsCarrying(false);
-
-
             
             foreach(GameObject child in children)
             {

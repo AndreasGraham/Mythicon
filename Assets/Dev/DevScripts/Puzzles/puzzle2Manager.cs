@@ -5,9 +5,10 @@ using UnityEngine;
 public class puzzle2Manager : MonoBehaviour 
 {
     // Here I made everything private, but available to set in the editor
-    [SerializeField] static bool red;
-    [SerializeField] static bool green;
-    [SerializeField] static bool blue;
+    [SerializeField] bool red;
+    [SerializeField] bool green;
+    [SerializeField] bool blue;
+    [SerializeField] bool isAnimComplete;
     [SerializeField] GameObject completionFire;
     [SerializeField] GameObject completionObj;
     [SerializeField] Camera completionCam;
@@ -21,59 +22,69 @@ public class puzzle2Manager : MonoBehaviour
         red = false;
         green = false;
         blue = false;
+        isAnimComplete = false;
         completionFire.SetActive(false);
-        completionObj.SetActive(false);       
+        completionObj.SetActive(false);
+        completionCam.enabled = false;
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
     {
-		if(blue) // Took away "= true" as it's not needed
+        if(blue && !isAnimComplete) // Took away "= true" as it's not needed
         {
-            completionFire.SetActive(true);
-            completionObj.SetActive(true); // Added the completion object to take to the village center stones
-            camManager.ChangeCameras(completionCam); // Added a "dramatic" camera change
+            isAnimComplete = true; // Set that the camera switch "animation" has been played
+            completionFire.SetActive(true); // Enable the completion fire
+            completionObj.SetActive(true); // Added the completion object to take to the village center stones    
+            camManager.ChangeCameras(completionCam); // Change cameras for a "dramatic" showing of the object
             StartCoroutine("CameraDelay"); // Added a delay to see the object for 5 seconds and switch back to the previous camera.
         }
 	}
 
     // Since the bools are now private, I created setters and getters for them. This makes changes to these variables intentional.
-    public static void SetRed(bool redComplete)
+    public void SetRed(bool redComplete)
     {
         red = redComplete;
     }
 
-    public static bool GetRed()
+    public bool GetRed()
     {
         return red;
     }
 
-    public static void SetBlue(bool blueComplete)
+    public void SetBlue(bool blueComplete)
     {
         blue = blueComplete;
     }
 
-    public static bool GetBlue()
+    public bool GetBlue()
     {
         return blue;
     }
 
-    public static void SetGreen(bool greenComplete)
+    public void SetGreen(bool greenComplete)
     {
         green = greenComplete;
     }
 
-    public static bool GetGreen()
+    public bool GetGreen()
     {
         return green;
+    }
+
+    public void SetAnimComplete(bool isComplete)
+    {
+        isAnimComplete = isComplete;
     }
 
     // Coroutine that has the camera delayed before switching back to the previous camera
     IEnumerator CameraDelay()
     {
+        
+
         int counter = 0;
         
-        while(counter < 6)
+        while(counter < 5)
         {
             counter++;
             

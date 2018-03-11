@@ -21,7 +21,7 @@ public class PuzzleManager : MonoBehaviour
         if (firstPuzzle.GetPuzzleComplete() && !firstPuzzle.GetAnimationPlayed())
         {
             firstPuzzle.SetAnimationPlayed(true);
-            camManager.ChangeCameras(swordCam);
+            camManager.ChangeCameras(swordCam);            
             StartCoroutine("CameraDelay");
         }
 	}
