@@ -45,7 +45,7 @@ public class QuestingText : MonoBehaviour
        else if (!questManager.IsQuestComplete("Quest2"))
         {
             questText.text = quest[1];
-            
+            progressText.enabled = false;
         }
        else
         {
@@ -77,5 +77,9 @@ public class QuestingText : MonoBehaviour
         //        progressText.text = itemCounter.item + "/" + itemCounter.collectLimit; //shows the players progress
         //    }
         //}
+    }
+    public void setText(string newQuest)
+    {
+        quest[1] = newQuest;
     }
 }
