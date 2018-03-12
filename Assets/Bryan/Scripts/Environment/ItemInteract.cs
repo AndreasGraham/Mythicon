@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemInteract : MonoBehaviour 
+public class ItemInteract : MonoBehaviour
 {
     ItemCounter count;
     PlayerAnimation anim;
@@ -15,20 +15,20 @@ public class ItemInteract : MonoBehaviour
     Ray ray;
     RaycastHit hit;
 
-	// Use this for initialization
-	void Start () 
+    // Use this for initialization
+    void Start()
     {
-        count = Camera.main.GetComponent<ItemCounter>();
+        count = GameObject.FindGameObjectWithTag("CountingManager").GetComponent<ItemCounter>();
         anim = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAnimation>();
         camManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
         firstPuzzle = GameObject.FindGameObjectWithTag("PuzzleManager").GetComponent<FirstPuzzle>();
-	}
-	
-	// Update is called once per frame
-	void FixedUpdate () 
+    }
+
+    // Update is called once per frame
+    void FixedUpdate()
     {
         ray = camManager.GetCurrentCamera().ScreenPointToRay(Input.mousePosition);
-            
+
         if (Physics.Raycast(ray, out hit, 200f) && Input.GetMouseButtonDown(0))
         {
             if (hit.collider.gameObject.tag == "Collectable")
@@ -51,27 +51,21 @@ public class ItemInteract : MonoBehaviour
                         break;
                 }
             }
-            else if (hit.collider.gameObject.tag == "Flowers")
+            else if (hit.collider.gameObject.tag == "Flowers" && Vector3.Distance(anim.gameObject.transform.position, hit.collider.transform.position) < 1.5f) 
             {
                 CollectItem(2);
+                hit.collider.gameObject.GetComponent<BoxCollider>().enabled = false;
             }
+            Debug.Log(hit.collider.tag);
         }
 
-	}
+        
+
+    }
 
     void CollectItem(int noOfItems)
     {
-        ray = camManager.GetCurrentCamera().ScreenPointToRay(Input.mousePosition);
-
-            if (hit.collider.gameObject.layer == 12 && Vector3.Distance(transform.position, hit.transform.position) < 1f)
-            {
-                anim.SetIsPickingUp(true);
-                count.SetItem(noOfItems);
-            }
-
-        if(anim.GetIsPickingUp())
-            anim.SetIsPickingUp(false);
-
+        count.SetItem(noOfItems);
         /** TODO: Figure out how to get into staff house!!! **/
     }
 }

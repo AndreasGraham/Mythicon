@@ -63,13 +63,13 @@ public class QuestManager : MonoBehaviour
         switch (requestedQuest)
         {
             case "Quest1":
-                requestedQuest = isQuest1Complete;
+                isQuestComplete = isQuest1Complete;
                 break;
             case "Quest2":
-                requestedQuest = isQuest2Complete;
+                isQuestComplete = isQuest2Complete;
                 break;
             case "Quest3":
-                requestedQuest = isQuest3Complete;
+                isQuestComplete = isQuest3Complete;
                 break;
             default:
                 break;

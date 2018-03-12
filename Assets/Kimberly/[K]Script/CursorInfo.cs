@@ -7,6 +7,8 @@ public class CursorInfo : MonoBehaviour
     Ray ray;
     RaycastHit hit;
 
+    CameraManager camManager;
+
     public Texture2D walkable;
     public Texture2D interactive;
     public Texture2D NonInteractive;
@@ -16,7 +18,9 @@ public class CursorInfo : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        camManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
+
+        ray = camManager.GetCurrentCamera().ScreenPointToRay(Input.mousePosition);
 
         if(Physics.Raycast(ray, out hit, float.PositiveInfinity))
         {
