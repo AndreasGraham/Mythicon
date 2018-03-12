@@ -380,8 +380,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5be688a2623c92488d784ad9944969e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WanderRadius: 30.46
-  WanderTimer: 1
+  WanderRadius: 35
+  WanderTimer: 5
   Target: {fileID: 0}
   EvadeDist: 10
 --- !u!114 &114844478276751816
@@ -432,7 +432,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 0
   Strength: 40
-  startingY: 0
 --- !u!195 &195537498697177488
 NavMeshAgent:
   m_ObjectHideFlags: 1
