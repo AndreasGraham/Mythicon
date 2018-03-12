@@ -6,39 +6,50 @@ using UnityEngine.AI;
 public class PeopleAI : MonoBehaviour
 {
     public float WanderRadius;
-    public float WanderTimer;
+    public float timeToWander;
+    public float timeToTalk;
 
     private Transform Target;
     private NavMeshAgent Agent;
-    private float Timer;
+    private float wanderTimer;
+    private float talkTimer;
     private Transform Villager = null;
 
     // Use this for initialization
     void Start()
     {
         Agent = GetComponent<NavMeshAgent>();
-        Timer = WanderTimer;
+        wanderTimer = timeToWander;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Timer += Time.deltaTime;
+        wanderTimer += Time.deltaTime;
+        talkTimer += Time.deltaTime;
 
-        if (Timer >= WanderTimer)
+        if (wanderTimer >= timeToWander && Villager == null)
         {
             Vector3 newPos = RandomNavMesh(transform.position, WanderRadius, -1);
             Agent.SetDestination(newPos);
-            Timer = 0;
+            wanderTimer = 0;
         }
 
-        if (Villager == null)
+        if (Villager == null && talkTimer >= timeToTalk)
         {
             Villager = GameObject.FindGameObjectWithTag("Villager").transform;
-            Vector3 relativePos = Villager.position - transform.position;
-            Quaternion rotation = Quaternion.LookRotation(relativePos);
-            transform.rotation = rotation;
-            Villager.position - transform.position;
+            talkTimer = 0;
+           
+        }
+        if(Villager != null && talkTimer >= 5)
+        {
+            Villager = null;
+            Debug.Log("Fuck");
+        }
+
+        if(Villager != null)
+        {
+            Agent.destination = Villager.position;
         }
 
     }
