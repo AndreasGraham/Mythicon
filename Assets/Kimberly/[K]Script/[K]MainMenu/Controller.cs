@@ -33,7 +33,7 @@ public class Controller : MonoBehaviour
 
 
 
-        flower = gameObject.GetComponent<ItemCounter>();
+        flower = GameObject.FindGameObjectWithTag("CountingManager").GetComponent<ItemCounter>();
     }
 
     // Update is called once per frame
