@@ -36,26 +36,26 @@ public class Puzzle3Manager : MonoBehaviour
     {
         ray = camManager.GetCurrentCamera().ScreenPointToRay(Input.mousePosition);
 
-        if(Physics.Raycast(ray, out hit, 100f))
+        if(Physics.Raycast(ray, out hit, 300f) && Input.GetMouseButtonDown(0))
         {
             float dist = Vector3.Distance(player.transform.position, hit.collider.transform.position);
 
             switch(hit.collider.tag)
             {
                 case "CyanButton":
-                    if(dist < 2f)
+                    if(dist < 3f)
                     isCyanPushed = true;
                     break;
                 case "MagentaButton":
-                    if (isCyanPushed && dist < 2f)
+                    if (isCyanPushed && dist < 3f)
                         isMagentaPushed = true;
                     break;
                 case "YellowButton":
-                    if (isMagentaPushed && dist < 2f)
+                    if (isMagentaPushed && dist < 3f)
                         isYellowPushed = true;
                     break;
                 case "KeyButton":
-                    if (isYellowPushed && dist < 2f)
+                    if (isYellowPushed && dist < 3f)
                         isKeyPushed = true;
                     break;
                 default:
@@ -72,6 +72,11 @@ public class Puzzle3Manager : MonoBehaviour
             StartCoroutine("CameraDelay");
         }
 	}
+
+    public bool GetAnimComplete()
+    {
+        return isAnimComplete;
+    }
 
     IEnumerator CameraDelay()
     {

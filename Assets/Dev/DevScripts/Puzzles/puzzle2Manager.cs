@@ -77,6 +77,11 @@ public class puzzle2Manager : MonoBehaviour
         isAnimComplete = isComplete;
     }
 
+    public bool GetAnimComplete()
+    {
+        return isAnimComplete;
+    }
+
     // Coroutine that has the camera delayed before switching back to the previous camera
     IEnumerator CameraDelay()
     {

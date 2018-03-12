@@ -39,4 +39,9 @@ public class PuzzleManager : MonoBehaviour
 
         camManager.ChangeCameras(camManager.GetPreviousCamera());
     }
+
+    public bool GetAnimComplete()
+    {
+        return firstPuzzle.GetAnimationPlayed();
+    }
 }
