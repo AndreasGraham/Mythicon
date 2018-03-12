@@ -17,6 +17,7 @@ public class Puzzle3Manager : MonoBehaviour
 
     GameObject player;
     CameraManager camManager;
+    QuestManager questManager;
     Ray ray;
     RaycastHit hit;
 
@@ -24,6 +25,7 @@ public class Puzzle3Manager : MonoBehaviour
 	void Start ()
     {
         camManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
+        questManager = GameObject.FindGameObjectWithTag("PuzzleManager").GetComponent<QuestManager>();
         player = GameObject.FindGameObjectWithTag("Player");
         isCyanPushed = isMagentaPushed = isYellowPushed = isKeyPushed = isAnimComplete = false;
         completionCam.enabled = false;
@@ -55,12 +57,14 @@ public class Puzzle3Manager : MonoBehaviour
                         isYellowPushed = true;
                     break;
                 case "KeyButton":
-                    if (isYellowPushed && dist < 3f)
+                    if (isYellowPushed && dist < 3.5f)
                         isKeyPushed = true;
                     break;
                 default:
                     break;
             }
+
+            Debug.Log(hit.collider.name);
         }
 
         if(isKeyPushed && !isAnimComplete)

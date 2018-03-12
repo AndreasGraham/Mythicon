@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     CameraManager camManager;
 
     [SerializeField]
-    GameObject[] children = new GameObject[5];
+    GameObject[] children = new GameObject[6];
 
     [SerializeField]
     Vector3 heldPosition;
@@ -44,12 +44,9 @@ public class Player : MonoBehaviour
 	// Update is called once per frame
 	void FixedUpdate () 
 	{
-        // Debug Forward
-
-        Debug.DrawRay(new Vector3(transform.position.x, transform.position.y + 1.5f, transform.position.z), transform.forward * 25f, Color.red);
-
-		// Call the method to move the player on left mouse click
+        // Call the method to move the player on left mouse click
 		ClickToMove();
+
         if (Vector3.Distance(transform.position, ClickToMove()) < .5f)
             animations.SetWalkSpeed(0f);
 		PickUpObject();
@@ -169,7 +166,7 @@ public class Player : MonoBehaviour
 				{
                     Debug.Log(transform.forward);
                     heldPosition = Vector3.zero;                
-                    heldPosition = new Vector3(.5f, 0f, .5f);
+                    heldPosition = new Vector3(0f, 0f, .15f);
                     hit.transform.parent = transform;
                     hit.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
                     hit.transform.GetComponent<Rigidbody>().isKinematic = true;
@@ -180,7 +177,6 @@ public class Player : MonoBehaviour
                     heldParent = hit.transform.parent;
                     
                     animations.SetIsCarrying(true);
-                    Debug.Log("You Picked Up The Object!");
 				}
 			}
 		}

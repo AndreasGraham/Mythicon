@@ -11,7 +11,7 @@ public class QuestCompleteTrigger : MonoBehaviour
         questManager = GameObject.FindGameObjectWithTag("PuzzleManager").GetComponent<QuestManager>();
     }
 
-    private void OnCollisionEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
         if (other.gameObject.name == "sword4" && gameObject.name == "Clan1Stone")
             questManager.SetQuest1Complete(true);

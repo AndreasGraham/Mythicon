@@ -21,13 +21,16 @@ public class FirstPuzzle : MonoBehaviour
     [SerializeField] GameObject clanFire;
 
     bool puzzleCompletion;
-    bool animationPlayed; // I added this to be able to know when to go back to the previous camera
+    [SerializeField] bool animationPlayed; // I added this to be able to know when to go back to the previous camera
 
 	// Use this for initialization
 	void Start () 
     {
         puzzleCompletion = false;
         animationPlayed = false;
+        sword.SetActive(true);
+        shield.SetActive(true);
+        staff.SetActive(true);
         clanFire.SetActive(false);
         clanSword.SetActive(false);
 	}
@@ -35,20 +38,6 @@ public class FirstPuzzle : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
     {
-        // I changed all of the "= false" statements in the if's so they're more astheically pleasing to read.
-		if(!sword.activeSelf)
-        {
-            fireOne.SetActive(true);
-        }
-        if(!shield.activeSelf)
-        {
-            fireTwo.SetActive(true);
-        }
-        if(!staff.activeSelf)
-        {
-            fireThree.SetActive(true);
-        }
-
         if(!sword.activeSelf && !shield.activeSelf && !staff.activeSelf)
         {
             clanFire.SetActive(true);
@@ -60,6 +49,21 @@ public class FirstPuzzle : MonoBehaviour
     // Since I put everthing as private I had to make getters and setters in.
     // Another way to ensure that the other programmers intended to manipulate
     // your variables.
+    public void SetSwordActive(bool isActive)
+    {
+        sword.SetActive(isActive);
+    }
+
+    public void SetShieldActive(bool isActive)
+    {
+        shield.SetActive(isActive);
+    }
+
+    public void SetStaffActive(bool isActive)
+    {
+        staff.SetActive(isActive);
+    }
+
     public bool GetPuzzleComplete()
     {
         return puzzleCompletion;

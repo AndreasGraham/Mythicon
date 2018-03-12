@@ -7,6 +7,10 @@ public class ItemInteract : MonoBehaviour
     ItemCounter count;
     PlayerAnimation anim;
     CameraManager camManager;
+    FirstPuzzle firstPuzzle;
+    GameObject swordCollect;
+    GameObject staffCollect;
+    GameObject shieldCollect;
 
     Ray ray;
     RaycastHit hit;
@@ -17,6 +21,7 @@ public class ItemInteract : MonoBehaviour
         count = Camera.main.GetComponent<ItemCounter>();
         anim = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAnimation>();
         camManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
+        firstPuzzle = GameObject.FindGameObjectWithTag("PuzzleManager").GetComponent<FirstPuzzle>();
 	}
 	
 	// Update is called once per frame
@@ -30,7 +35,21 @@ public class ItemInteract : MonoBehaviour
             {
                 CollectItem(1);
                 Debug.Log("Item Collected");
-                gameObject.SetActive(false);
+
+                switch (hit.collider.name)
+                {
+                    case "Rune Sword":
+                        firstPuzzle.SetSwordActive(false);
+                        break;
+                    case "shield":
+                        firstPuzzle.SetShieldActive(false);
+                        break;
+                    case "staff":
+                        firstPuzzle.SetStaffActive(false);
+                        break;
+                    default:
+                        break;
+                }
             }
             else if (hit.collider.gameObject.tag == "Flowers")
             {
@@ -47,7 +66,7 @@ public class ItemInteract : MonoBehaviour
             if (hit.collider.gameObject.layer == 12 && Vector3.Distance(transform.position, hit.transform.position) < 1f)
             {
                 anim.SetIsPickingUp(true);
-                count.SetItem(2);
+                count.SetItem(noOfItems);
             }
 
         if(anim.GetIsPickingUp())
