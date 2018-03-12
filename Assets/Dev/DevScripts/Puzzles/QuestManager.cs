@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class QuestManager : MonoBehaviour
 {
     FirstPuzzle puz1Manager;
     puzzle2Manager puz2Manager;
     Puzzle3Manager puz3Manager;
+    CameraManager camManager;
+    GameObject player;
 
     [SerializeField] bool isQuest1Complete;
     [SerializeField] bool isQuest2Complete;
@@ -16,13 +19,16 @@ public class QuestManager : MonoBehaviour
     [SerializeField] GameObject puz2CompleteFire;
     [SerializeField] GameObject puz3CompleteFire;
     [SerializeField] GameObject treeFire;
+    [SerializeField] Camera endGameCamera;
 
 	// Use this for initialization
 	void Awake ()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         puz1Manager = GameObject.FindGameObjectWithTag("PuzzleManager").GetComponent<FirstPuzzle>();
         puz2Manager = GameObject.FindGameObjectWithTag("PuzzleManager").GetComponent<puzzle2Manager>();
         puz3Manager = GameObject.FindGameObjectWithTag("PuzzleManager").GetComponent<Puzzle3Manager>();
+        camManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
 
         puz1CompleteFire.SetActive(false);
         puz2CompleteFire.SetActive(false);
@@ -48,6 +54,9 @@ public class QuestManager : MonoBehaviour
         {
             Debug.Log("All Citizens Should Be Instatiated!\n Quests Complete!");
             treeFire.SetActive(true);
+            if(camManager.GetCurrentCamera() != endGameCamera)
+                camManager.ChangeCameras(endGameCamera);
+            player.GetComponent<NavMeshAgent>().SetDestination(player.transform.position);
         }
     }
 
@@ -63,13 +72,13 @@ public class QuestManager : MonoBehaviour
         switch (requestedQuest)
         {
             case "Quest1":
-                requestedQuest = isQuest1Complete;
+                isQuestComplete = isQuest1Complete;
                 break;
             case "Quest2":
-                requestedQuest = isQuest2Complete;
+                isQuestComplete = isQuest2Complete;
                 break;
             case "Quest3":
-                requestedQuest = isQuest3Complete;
+                isQuestComplete = isQuest3Complete;
                 break;
             default:
                 break;
