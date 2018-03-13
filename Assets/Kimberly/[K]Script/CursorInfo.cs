@@ -31,6 +31,7 @@ public class CursorInfo : MonoBehaviour
                     break;
                 case 12:
                 case 9:
+                case 14:
                     Cursor.SetCursor(interactive, Vector2.zero, CursorMode.Auto);
                     break;
                 case 10:

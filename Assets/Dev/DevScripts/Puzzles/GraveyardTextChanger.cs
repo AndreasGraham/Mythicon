@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class GraveyardTextChanger : MonoBehaviour
 {
-    QuestingText questingText;
     QuestManager questManager;
+    Puzzle1MessageSystem puzzleMessages;
 
     private void Awake()
     {
-        questingText = GameObject.FindGameObjectWithTag("CountingManager").GetComponent<QuestingText>();
         questManager = GameObject.FindGameObjectWithTag("PuzzleManager").GetComponent<QuestManager>();
+        puzzleMessages = GameObject.FindGameObjectWithTag("Messages").GetComponent<Puzzle1MessageSystem>();
     }
 
     private void OnTriggerExit(Collider other)
@@ -20,7 +20,7 @@ public class GraveyardTextChanger : MonoBehaviour
         {
             if (questManager.IsQuestComplete("Quest1"))
             {
-                questingText.setText("Place the stones in the correct order");
+                puzzleMessages.SetTrigger(true);
                 gameObject.GetComponent<Collider>().enabled = false;
             }
         }
