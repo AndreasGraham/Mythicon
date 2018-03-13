@@ -11,3 +11,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Dev/DevForest.unity
     guid: c228f6ac479aedb47858b32ca42e302d
+  - enabled: 1
+    path: Assets/Dev/DevVillage.unity
+    guid: 52763af0a4e4dd843b53e846804a8aaf

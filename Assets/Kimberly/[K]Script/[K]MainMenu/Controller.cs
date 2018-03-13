@@ -6,34 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class Controller : MonoBehaviour
 {
-    [SerializeField]
-    private Text counterText;
+   
     public GameObject inGameMenu;
     bool ingame;
     //==============================================
 
-    [SerializeField]
-    private GameObject flowerQuestPanel;
-
-    [SerializeField]
-    private GameObject itemCounterPanel;
-
-    [SerializeField]
-    private Text questText;
-
-
-    ItemCounter flower;
+   
     // Use this for initialization
     void Awake()
     {
         inGameMenu.SetActive(false);
         ingame = true;
-
-       
-
-
-
-        flower = GameObject.FindGameObjectWithTag("CountingManager").GetComponent<ItemCounter>();
     }
 
     // Update is called once per frame
@@ -54,17 +37,6 @@ public class Controller : MonoBehaviour
                     break;
             }
             ingame = !ingame;
-        }
-
-        if(flower.GetItemCount() >= flower.GetCollectLimit())
-        {
-            questText.text = "Go to the Village";
-            counterText.text = "Flowers: Completed";
-        }
-        else
-        {
-            questText.text = "Pick Flowers";
-            counterText.text = "Flowers: " + flower.GetItemCount() + "/" + flower.GetCollectLimit();
         }
     }
 
