@@ -24,7 +24,7 @@ public class puzzle2BlockTrigger : MonoBehaviour
 
             Debug.Log("Red = true");
         }
-        else if (other.tag == "puzzleRed")
+        else if (other.tag == "puzzleGreen" || other.tag == "puzzleBlue")
         {
             playerAudio.PlayOneShot(wrongAnswer);
         }

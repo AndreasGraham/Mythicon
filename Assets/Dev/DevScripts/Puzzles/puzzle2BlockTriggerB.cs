@@ -21,7 +21,7 @@ public class puzzle2BlockTriggerB : MonoBehaviour
             // sets puzzle manager, green bool to true
             puz2Manager.SetGreen(true);
         }
-        else if (other.tag == "puzzle2Green")
+        else if (other.tag == "puzzle2Blue" || other.tag == "puzzle2Red")
         {
             playerAudio.PlayOneShot(wrongAnswer);
         }
