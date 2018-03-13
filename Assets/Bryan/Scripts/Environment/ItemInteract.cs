@@ -56,16 +56,11 @@ public class ItemInteract : MonoBehaviour
                 CollectItem(2);
                 hit.collider.gameObject.GetComponent<BoxCollider>().enabled = false;
             }
-            Debug.Log(hit.collider.tag);
         }
-
-        
-
     }
 
     void CollectItem(int noOfItems)
     {
         count.SetItem(noOfItems);
-        /** TODO: Figure out how to get into staff house!!! **/
     }
 }

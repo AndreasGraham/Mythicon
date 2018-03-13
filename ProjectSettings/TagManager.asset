@@ -23,6 +23,7 @@ TagManager:
   - Fire
   - Villager
   - CountingManager
+  - Messages
   layers:
   - Default
   - TransparentFX

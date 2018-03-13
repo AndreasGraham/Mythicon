@@ -16,6 +16,8 @@ public class Puzzle3Manager : MonoBehaviour
     [SerializeField] bool isAnimComplete;
 
     GameObject player;
+    AudioSource playerAudio;
+    AudioClip wrongAnswer;
     CameraManager camManager;
     QuestManager questManager;
     Ray ray;
@@ -27,6 +29,7 @@ public class Puzzle3Manager : MonoBehaviour
         camManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
         questManager = GameObject.FindGameObjectWithTag("PuzzleManager").GetComponent<QuestManager>();
         player = GameObject.FindGameObjectWithTag("Player");
+        playerAudio = player.GetComponent<AudioSource>();
         isCyanPushed = isMagentaPushed = isYellowPushed = isKeyPushed = isAnimComplete = false;
         completionCam.enabled = false;
         completionObj.SetActive(false);
@@ -51,16 +54,23 @@ public class Puzzle3Manager : MonoBehaviour
                 case "MagentaButton":
                     if (isCyanPushed && dist < 3f)
                         isMagentaPushed = true;
+                    else
+                        playerAudio.PlayOneShot(wrongAnswer);
                     break;
                 case "YellowButton":
                     if (isMagentaPushed && dist < 3f)
                         isYellowPushed = true;
+                    else
+                        playerAudio.PlayOneShot(wrongAnswer);
                     break;
                 case "KeyButton":
                     if (isYellowPushed && dist < 3.5f)
                         isKeyPushed = true;
+                    else
+                        playerAudio.PlayOneShot(wrongAnswer);
                     break;
                 default:
+                    Debug.LogError("Something Went Wrong in Puzzle 3");
                     break;
             }
 
@@ -94,5 +104,10 @@ public class Puzzle3Manager : MonoBehaviour
         }
 
         camManager.ChangeCameras(camManager.GetPreviousCamera());
+    }
+
+    public bool GetKey()
+    {
+        return isKeyPushed;
     }
 }
