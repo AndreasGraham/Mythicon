@@ -16,7 +16,7 @@ public class ItemInteract : MonoBehaviour
     RaycastHit hit;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         count = GameObject.FindGameObjectWithTag("CountingManager").GetComponent<ItemCounter>();
         anim = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerAnimation>();
