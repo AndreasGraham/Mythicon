@@ -11,15 +11,22 @@ public class QuestManager : MonoBehaviour
     CameraManager camManager;
     GameObject player;
 
+    [Header("Quest Complete Flags")]
     [SerializeField] bool isQuest1Complete;
     [SerializeField] bool isQuest2Complete;
     [SerializeField] bool isQuest3Complete;
 
+    [Header("Puzzle/Game Complete Objects")]
     [SerializeField] GameObject puz1CompleteFire;
     [SerializeField] GameObject puz2CompleteFire;
     [SerializeField] GameObject puz3CompleteFire;
     [SerializeField] GameObject treeFire;
     [SerializeField] Camera endGameCamera;
+
+    [Header("Clan Objects")]
+    [SerializeField] GameObject[] clanOne;
+    [SerializeField] GameObject[] clanTwo;
+    [SerializeField] GameObject[] clanThree;
 
 	// Use this for initialization
 	void Awake ()
@@ -34,6 +41,19 @@ public class QuestManager : MonoBehaviour
         puz2CompleteFire.SetActive(false);
         puz3CompleteFire.SetActive(false);
         treeFire.SetActive(false);
+
+        foreach (GameObject c in clanOne)
+        {
+            c.SetActive(false);
+        }
+        foreach (GameObject c in clanTwo)
+        {
+            c.SetActive(false);
+        }
+        foreach (GameObject c in clanThree)
+        {
+            c.SetActive(false);
+        }
 	}
 	
 	// Update is called once per frame
@@ -73,12 +93,24 @@ public class QuestManager : MonoBehaviour
         {
             case "Quest1":
                 isQuestComplete = isQuest1Complete;
+                foreach (GameObject c in clanOne)
+                {                    
+                    c.SetActive(true);
+                }
                 break;
             case "Quest2":
                 isQuestComplete = isQuest2Complete;
+                foreach (GameObject c in clanTwo)
+                {                    
+                    c.SetActive(true);
+                }
                 break;
             case "Quest3":
                 isQuestComplete = isQuest3Complete;
+                foreach (GameObject c in clanThree)
+                {                    
+                    c.SetActive(true);
+                }
                 break;
             default:
                 break;
