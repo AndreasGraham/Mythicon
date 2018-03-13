@@ -3,56 +3,72 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+enum AIState {Walk, Talk};
 public class PeopleAI : MonoBehaviour
 {
-    public float WanderRadius;
-    public float timeToWander;
-    public float timeToTalk;
-
     private Transform Target;
     private NavMeshAgent Agent;
-    private float wanderTimer;
-    private float talkTimer;
+    private float Delay;
     private Transform Villager = null;
+    private Animator anim;
+    [SerializeField] private AIState States;
+    [SerializeField] private float wanderRadius;
+
 
     // Use this for initialization
     void Start()
     {
         Agent = GetComponent<NavMeshAgent>();
-        wanderTimer = timeToWander;
+        anim = GetComponent<Animator>();
+        anim.SetFloat("Speed", 1f);
+        States = AIState.Walk;
     }
 
     // Update is called once per frame
     void Update()
     {
-        wanderTimer += Time.deltaTime;
-        talkTimer += Time.deltaTime;
 
-        if (wanderTimer >= timeToWander && Villager == null)
+        Vector3 ray = transform.position;
+        ray.y = transform.lossyScale.y / 2f;
+        RaycastHit hit;
+      
+        if (Physics.SphereCast(ray, 1f, transform.forward, out hit, 1f))
         {
-            Vector3 newPos = RandomNavMesh(transform.position, WanderRadius, -1);
-            Agent.SetDestination(newPos);
-            wanderTimer = 0;
+            Debug.DrawRay(transform.position, transform.forward, Color.green);
+            if (hit.collider.tag == "Villager" && States == AIState.Walk)
+            {
+                Villager = hit.transform;
+                States = AIState.Talk;
+            }
+            else if (Villager != null && States == AIState.Talk)
+            {
+                Villager = null;
+                States = AIState.Walk;
+            }
         }
 
-        if (Villager == null && talkTimer >= timeToTalk)
-        {
-            Villager = GameObject.FindGameObjectWithTag("Villager").transform;
-            talkTimer = 0;
-           
-        }
-        if(Villager != null && talkTimer >= 5)
-        {
-            Villager = null;
-            Debug.Log("Fuck");
-        }
 
-        if(Villager != null)
+        if (Delay <= 0f)
         {
-            Agent.destination = Villager.position;
+            switch (States)
+            {
+                case AIState.Walk:
+                    Vector3 newPos = RandomNavMesh(transform.position, wanderRadius, -1);
+                    anim.SetFloat("Speed", 1f);
+                    Agent.SetDestination(newPos);
+                    break;
+                case AIState.Talk:
+                    Agent.SetDestination(transform.position);
+                    anim.SetFloat("Speed", 0f);
+                    break;
+                default:
+                    Debug.Log("Something Went Wrong!");
+                    break;
+            }
+            StartCoroutine("StateChangeDelay");
         }
-
     }
+
 
     public static Vector3 RandomNavMesh(Vector3 origin, float dist, int layermask)
     {
@@ -67,7 +83,18 @@ public class PeopleAI : MonoBehaviour
 
         return navHit.position;
 
+    }
+    IEnumerator StateChangeDelay()
+    {
+       
+        Delay = 7f;
 
+        while (Delay > 0f)
+        {
+            Delay--;
+
+            yield return new WaitForSeconds(1);
+        }
     }
 
 }
