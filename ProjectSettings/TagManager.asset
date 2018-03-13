@@ -22,6 +22,7 @@ TagManager:
   - KeyButton
   - Fire
   - Villager
+  - CountingManager
   layers:
   - Default
   - TransparentFX
