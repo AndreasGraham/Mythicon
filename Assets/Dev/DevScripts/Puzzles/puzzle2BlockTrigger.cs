@@ -1,3 +1,6 @@
+/** Originally Written By: Andreas
+ *  Refactored and Rewritten By: Bryan 
+ **/
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,7 +9,9 @@ public class puzzle2BlockTrigger : MonoBehaviour
 {
     puzzle2Manager puz2Manager;
     AudioSource playerAudio;
-    [SerializeField] AudioClip wrongAnswer;
+
+    [Header("Audio")]
+    [SerializeField] AudioClip rightAnswer;
     // Got rid of the collider bools as we only need to check for red, green, and blue to see if the puzzle is completed.
     void Start()
     {
@@ -21,7 +26,7 @@ public class puzzle2BlockTrigger : MonoBehaviour
         {
             // sets puzzle manager, red bool to true
             puz2Manager.SetRed(true);
-
+            playerAudio.PlayOneShot(rightAnswer);
             Debug.Log("Red = true");
         }
         else if (other.tag == "puzzleGreen" || other.tag == "puzzleBlue")

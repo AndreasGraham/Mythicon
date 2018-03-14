@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿/** Written By: Bryan **/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,8 +15,10 @@ public class AIExample : MonoBehaviour
     private NavMeshAgent agent;
     private Animator anim;
     private Transform villager = null;
+    [Header("Current State")]
     [SerializeField] private AIStates states;
     private float delay;
+    [Header("How Far To Wander")]
     [SerializeField] private float wanderRadius;
 
 	// Use this for initialization

@@ -1,22 +1,28 @@
-﻿using System.Collections;
+﻿/** Written By: Bryan **/
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Puzzle3Manager : MonoBehaviour
 {
-    [SerializeField] GameObject[] buttons;
+    [Header("Completion Objects")]
     [SerializeField] Camera completionCam;
     [SerializeField] GameObject completionObj;
     [SerializeField] GameObject completionFire;
+
+    [Header("Buttons")]
+    [SerializeField] GameObject[] buttons;
     [SerializeField] bool isCyanPushed;
     [SerializeField] bool isMagentaPushed;
     [SerializeField] bool isYellowPushed;
     [SerializeField] bool isKeyPushed;
     [SerializeField] bool isAnimComplete;
+    [SerializeField] AudioClip rightAnswer;
 
     GameObject player;
     AudioSource playerAudio;
+
     CameraManager camManager;
     QuestManager questManager;
     Ray ray;
@@ -47,24 +53,36 @@ public class Puzzle3Manager : MonoBehaviour
             switch(hit.collider.tag)
             {
                 case "CyanButton":
-                    if(dist < 3f)
-                    isCyanPushed = true;
+                    if (dist < 3f)
+                    {
+                        isCyanPushed = true;
+                        playerAudio.PlayOneShot(rightAnswer);
+                    }
                     break;
                 case "MagentaButton":
                     if (isCyanPushed && dist < 3f)
+                    {
                         isMagentaPushed = true;
+                        playerAudio.PlayOneShot(rightAnswer);
+                    }
                     else
                         playerAudio.PlayOneShot(playerAudio.clip);
                     break;
                 case "YellowButton":
                     if (isMagentaPushed && dist < 3f)
+                    {
                         isYellowPushed = true;
+                        playerAudio.PlayOneShot(rightAnswer);
+                    }
                     else
                         playerAudio.PlayOneShot(playerAudio.clip);
                     break;
                 case "KeyButton":
                     if (isYellowPushed && dist < 3.5f)
+                    {
                         isKeyPushed = true;
+                        playerAudio.PlayOneShot(rightAnswer);
+                    }
                     else
                         playerAudio.PlayOneShot(playerAudio.clip);
                     break;
