@@ -17,7 +17,6 @@ public class Puzzle3Manager : MonoBehaviour
 
     GameObject player;
     AudioSource playerAudio;
-    AudioClip wrongAnswer;
     CameraManager camManager;
     QuestManager questManager;
     Ray ray;
@@ -29,7 +28,7 @@ public class Puzzle3Manager : MonoBehaviour
         camManager = GameObject.FindGameObjectWithTag("CameraManager").GetComponent<CameraManager>();
         questManager = GameObject.FindGameObjectWithTag("PuzzleManager").GetComponent<QuestManager>();
         player = GameObject.FindGameObjectWithTag("Player");
-        playerAudio = player.GetComponent<AudioSource>();
+        playerAudio = GameObject.FindGameObjectWithTag("WrongAudioSource").GetComponent<AudioSource>();
         isCyanPushed = isMagentaPushed = isYellowPushed = isKeyPushed = isAnimComplete = false;
         completionCam.enabled = false;
         completionObj.SetActive(false);
@@ -41,7 +40,7 @@ public class Puzzle3Manager : MonoBehaviour
     {
         ray = camManager.GetCurrentCamera().ScreenPointToRay(Input.mousePosition);
 
-        if(Physics.Raycast(ray, out hit, 300f) && Input.GetMouseButtonDown(0))
+        if(Physics.Raycast(ray, out hit, 300f) && Input.GetMouseButtonDown(0) && questManager.IsQuestComplete("Quest2"))
         {
             float dist = Vector3.Distance(player.transform.position, hit.collider.transform.position);
 
@@ -55,19 +54,19 @@ public class Puzzle3Manager : MonoBehaviour
                     if (isCyanPushed && dist < 3f)
                         isMagentaPushed = true;
                     else
-                        playerAudio.PlayOneShot(wrongAnswer);
+                        playerAudio.PlayOneShot(playerAudio.clip);
                     break;
                 case "YellowButton":
                     if (isMagentaPushed && dist < 3f)
                         isYellowPushed = true;
                     else
-                        playerAudio.PlayOneShot(wrongAnswer);
+                        playerAudio.PlayOneShot(playerAudio.clip);
                     break;
                 case "KeyButton":
                     if (isYellowPushed && dist < 3.5f)
                         isKeyPushed = true;
                     else
-                        playerAudio.PlayOneShot(wrongAnswer);
+                        playerAudio.PlayOneShot(playerAudio.clip);
                     break;
                 default:
                     Debug.LogError("Something Went Wrong in Puzzle 3");

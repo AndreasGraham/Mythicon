@@ -10,7 +10,8 @@ public class puzzle2BlockTriggerB : MonoBehaviour
     // Got rid of the collider bools as we only need to check for red, green, and blue to see if the puzzle is completed.
     void Start()
     {
-        puz2Manager = GameObject.FindGameObjectWithTag("PuzzleManager").GetComponent<puzzle2Manager>();   
+        puz2Manager = GameObject.FindGameObjectWithTag("PuzzleManager").GetComponent<puzzle2Manager>();
+        playerAudio = GameObject.FindGameObjectWithTag("WrongAudioSource").GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -23,7 +24,7 @@ public class puzzle2BlockTriggerB : MonoBehaviour
         }
         else if (other.tag == "puzzle2Blue" || other.tag == "puzzle2Red")
         {
-            playerAudio.PlayOneShot(wrongAnswer);
+            playerAudio.PlayOneShot(playerAudio.clip);
         }
 
     }

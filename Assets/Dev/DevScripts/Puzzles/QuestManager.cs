@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿/**Written By: Bryan **/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -24,9 +26,9 @@ public class QuestManager : MonoBehaviour
     [SerializeField] Camera endGameCamera;
 
     [Header("Clan Objects")]
-    [SerializeField] GameObject[] clanOne;
-    [SerializeField] GameObject[] clanTwo;
-    [SerializeField] GameObject[] clanThree;
+    [SerializeField] GameObject clanOne;
+    [SerializeField] GameObject clanTwo;
+    [SerializeField] GameObject clanThree;
 
 	// Use this for initialization
 	void Awake ()
@@ -42,18 +44,13 @@ public class QuestManager : MonoBehaviour
         puz3CompleteFire.SetActive(false);
         treeFire.SetActive(false);
 
-        foreach (GameObject c in clanOne)
-        {
-            c.SetActive(false);
-        }
-        foreach (GameObject c in clanTwo)
-        {
-            c.SetActive(false);
-        }
-        foreach (GameObject c in clanThree)
-        {
-            c.SetActive(false);
-        }
+        isQuest1Complete = false;
+        isQuest2Complete = false;
+        isQuest3Complete = false;
+
+        clanOne.SetActive(false);
+        clanTwo.SetActive(false);
+        clanThree.SetActive(false);
 	}
 	
 	// Update is called once per frame
@@ -67,9 +64,18 @@ public class QuestManager : MonoBehaviour
 
         if (puz3Manager.GetAnimComplete())
         {
-            puz3CompleteFire.SetActive(true);
-            
+            puz3CompleteFire.SetActive(true);            
         }
+
+        if(isQuest1Complete && !clanOne.activeSelf)
+            clanOne.SetActive(true);
+
+        if (isQuest2Complete && !clanTwo.activeSelf)
+            clanTwo.SetActive(true);
+
+        if (isQuest3Complete && !clanThree.activeSelf)
+            clanThree.SetActive(true);
+
         if (AllQuestsComplete())
         {
             Debug.Log("All Citizens Should Be Instatiated!\n Quests Complete!");
@@ -86,36 +92,26 @@ public class QuestManager : MonoBehaviour
             isQuest1Complete = isQuestComplete;
     }
 
-    public bool IsQuestComplete(string requestedQuest)
+    public bool IsQuestComplete(string requestedQuest, bool isCheck = true)
     {
         bool isQuestComplete = false;
-        switch (requestedQuest)
+        if (isCheck)
         {
-            case "Quest1":
-                isQuestComplete = isQuest1Complete;
-                foreach (GameObject c in clanOne)
-                {                    
-                    c.SetActive(true);
-                }
-                break;
-            case "Quest2":
-                isQuestComplete = isQuest2Complete;
-                foreach (GameObject c in clanTwo)
-                {                    
-                    c.SetActive(true);
-                }
-                break;
-            case "Quest3":
-                isQuestComplete = isQuest3Complete;
-                foreach (GameObject c in clanThree)
-                {                    
-                    c.SetActive(true);
-                }
-                break;
-            default:
-                break;
+            switch (requestedQuest)
+            {
+                case "Quest1":
+                    isQuestComplete = isQuest1Complete;
+                    break;
+                case "Quest2":
+                    isQuestComplete = isQuest2Complete;
+                    break;
+                case "Quest3":
+                    isQuestComplete = isQuest3Complete;
+                    break;
+                default:
+                    break;
+            }
         }
-
         return isQuestComplete;
     }
 
