@@ -24,6 +24,7 @@ TagManager:
   - Villager
   - CountingManager
   - Messages
+  - WrongAudioSource
   layers:
   - Default
   - TransparentFX

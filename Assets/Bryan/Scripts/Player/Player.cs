@@ -166,7 +166,7 @@ public class Player : MonoBehaviour
 				{
                     Debug.Log(transform.forward);
                     heldPosition = Vector3.zero;                
-                    heldPosition = new Vector3(0f, 0f, .15f);
+                    heldPosition = new Vector3(0f, 0f, .2f);
                     hit.transform.parent = transform;
                     hit.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
                     hit.transform.GetComponent<Rigidbody>().isKinematic = true;
