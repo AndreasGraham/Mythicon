@@ -51,7 +51,8 @@ public class ItemInteract : MonoBehaviour
                         break;
                 }
             }
-            else if (hit.collider.gameObject.tag == "Flowers" && Vector3.Distance(anim.gameObject.transform.position, hit.collider.transform.position) < 3.5f) 
+
+            else if (hit.collider.gameObject.tag == "Flowers" && Vector3.Distance(anim.gameObject.transform.position, hit.collider.transform.position) < 10f) 
             {
                 CollectItem(12);
                 hit.collider.gameObject.GetComponent<BoxCollider>().enabled = false;

@@ -11,7 +11,7 @@ public class puzzle2BlockTrigger : MonoBehaviour
     void Start()
     {
         puz2Manager = GameObject.FindGameObjectWithTag("PuzzleManager").GetComponent<puzzle2Manager>();
-        playerAudio = GameObject.FindGameObjectWithTag("Player").GetComponent<AudioSource>();
+        playerAudio = GameObject.FindGameObjectWithTag("WrongAudioSource").GetComponent<AudioSource>();
     }
 	
     void OnTriggerEnter(Collider other)
@@ -24,9 +24,9 @@ public class puzzle2BlockTrigger : MonoBehaviour
 
             Debug.Log("Red = true");
         }
-        else if (other.tag == "puzzleRed")
+        else if (other.tag == "puzzleGreen" || other.tag == "puzzleBlue")
         {
-            playerAudio.PlayOneShot(wrongAnswer);
+            playerAudio.PlayOneShot(playerAudio.clip);
         }
         
     }

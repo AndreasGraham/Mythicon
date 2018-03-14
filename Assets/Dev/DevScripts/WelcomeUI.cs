@@ -13,6 +13,10 @@ public class WelcomeUI : MonoBehaviour
     {
         storyText.text = "WELCOME TO THE VILLAGE!\n THE GODS HAVE TAKEN YOUR PEOPLE!\n TO GET THEM BACK YOU MUST SOLVE THE PUZZLES!";
         puzzle1Messages.SetActive(false);
+
+        Vector2 messagePos = storyText.transform.position;
+        messagePos.y = Screen.height / 4;
+        storyText.transform.position = messagePos;
 	}
 	
     void Start()

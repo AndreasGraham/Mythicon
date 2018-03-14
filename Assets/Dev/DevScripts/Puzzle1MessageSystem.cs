@@ -23,7 +23,9 @@ public class Puzzle1MessageSystem : MonoBehaviour
         puz2Man = GameObject.FindGameObjectWithTag("PuzzleManager").GetComponent<puzzle2Manager>();
         puz3Man = GameObject.FindGameObjectWithTag("PuzzleManager").GetComponent<Puzzle3Manager>();
         message.text = "Find All Of The Clan Objects!";
-
+        Vector2 messagePos = message.transform.position;
+        messagePos.y = Screen.height / 4;
+        message.transform.position = messagePos;
         graveYardTrigger = false;
 	}
 	
@@ -52,10 +54,6 @@ public class Puzzle1MessageSystem : MonoBehaviour
         else if (questManager.IsQuestComplete("Quest3") && puz3Man.GetKey())
         {
             message.text = "GREAT JOB!\n YOU SATISFIED THE GODS, AND BROUGHT BACK ALL OF YOUR PEOPLE!";
-
-            Vector2 messagePos = message.transform.position;
-            messagePos.y = Screen.height / 4;
-            message.transform.position = messagePos;
         }
     }
 
