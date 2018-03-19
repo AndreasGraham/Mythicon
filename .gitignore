@@ -32,4 +32,4 @@ sysinfo.txt
 .vscode/
 
 # Build Files
-.exe
+*.exe
